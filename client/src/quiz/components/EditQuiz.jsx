@@ -30,7 +30,8 @@ class EditQuiz extends Component {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: token
+        Authorization: token,
+        'Access-Control-Allow-Origin': '*'
       }
     })
       .then(res => res.json())

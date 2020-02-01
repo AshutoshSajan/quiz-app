@@ -48,6 +48,10 @@ class ListQuiz extends Component {
         }
       );
     } else {
+      if(quiz && quiz._id){
+        let div = document.getElementById(quiz._id);
+        if(div) div.style.pointerEvents = "none";
+      }
       this.handleScroll();
       return null;
     }

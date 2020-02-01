@@ -4,7 +4,8 @@ export function handleAutoLogin(url, jwt, history) {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: jwt
+          Authorization: jwt,
+          'Access-Control-Allow-Origin': '*'
         }
       })
       .then(res => res.json())
@@ -29,7 +30,8 @@ export function handleUserLogin(url, user, history) {
     fetch(url, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
         },
         body: JSON.stringify(user)
       })
@@ -61,7 +63,8 @@ export function handleUserRegister(url, user, history) {
     fetch(url, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
         },
         body: JSON.stringify(user)
       })

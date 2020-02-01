@@ -37,7 +37,7 @@ class Score extends Component {
                         );
                       })
                     : null}
-                  {user && user.isAdmin && user.score.length ? (
+                  {user && user.isAdmin && user.scores.length ? (
                     <th className='bold txt-capitalize'>other</th>
                   ) : null}
                 </tr>

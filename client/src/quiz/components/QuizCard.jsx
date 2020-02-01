@@ -62,7 +62,7 @@ export default function QuizCard(props) {
               style={{
                 padding: '20px 0'
               }}
-              id={quiz_id}
+              id={quiz._id}
             >
               <div
                 id={'option1'}
