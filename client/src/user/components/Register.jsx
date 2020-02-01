@@ -4,8 +4,7 @@ import { connect } from 'react-redux';
 
 import { handleUserRegister } from '../actions';
 
-const BASE_URL = 'http://localhost:8000/api/v1';
-
+const BASE_URL = 'http://localhost:3000/api/v1';
 class Register extends Component {
   state = {
     user: {

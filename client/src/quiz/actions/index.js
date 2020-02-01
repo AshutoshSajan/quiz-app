@@ -5,7 +5,6 @@ export function handleCreateQuiz(url, token, data, history) {
         headers: {
           'Content-Type': 'application/json',
           Authorization: token,
-          'Access-Control-Allow-Origin': '*'
         },
         body: JSON.stringify(data)
       })
@@ -43,7 +42,6 @@ export function handleQuizUpdate(url, token, data, id, history) {
         headers: {
           'Content-Type': 'application/json',
           Authorization: token,
-          'Access-Control-Allow-Origin': '*'
         },
         body: JSON.stringify(data)
       })
@@ -80,7 +78,6 @@ export function handleFetchQuizzes(url, token) {
         headers: {
           'Content-Type': 'application/json',
           Authorization: token,
-          'Access-Control-Allow-Origin': '*',
         }
       })
       .then(res => res.json())
@@ -111,7 +108,6 @@ export function handleUpdateScore(url, token, score) {
         headers: {
           'Content-Type': 'application/json',
           Authorization: token,
-          'Access-Control-Allow-Origin': '*'
         },
         body: JSON.stringify(score)
       })
@@ -143,7 +139,6 @@ export function deleteQuiz(url, token, id, history) {
         headers: {
           'Content-Type': 'application/json',
           Authorization: token,
-          'Access-Control-Allow-Origin': '*',
         }
       })
       .then(res => res.json())

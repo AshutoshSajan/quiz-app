@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { handleQuizUpdate } from '../actions';
 
-const BASE_URL = 'http://localhost:8000/api/v1';
+const BASE_URL = 'http://localhost:3000/api/v1';
 
 class EditQuiz extends Component {
   state = {
@@ -31,7 +31,6 @@ class EditQuiz extends Component {
       headers: {
         'Content-Type': 'application/json',
         Authorization: token,
-        'Access-Control-Allow-Origin': '*'
       }
     })
       .then(res => res.json())

@@ -5,7 +5,6 @@ export default function handleDeleteScore(url, token) {
         headers: {
           'Content-Type': 'application/json',
           Authorization: token,
-          'Access-Control-Allow-Origin': '*'
         }
       })
       .then(res => res.json())

@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 
 import { handleCreateQuiz } from '../actions';
 
-const BASE_URL = 'http://localhost:8000/api/v1';
-
+const BASE_URL = 'http://localhost:3000/api/v1';
 class CreateQuiz extends Component {
   state = {
     question: '',
