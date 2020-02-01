@@ -11,13 +11,8 @@ const indexRouter = require('./server/routes');
 
 const app = express();
 
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
 
-console.log(process.env, "process env vars...");
+app.use(cors());
 
 async function connectDB(){
 	try {
@@ -38,7 +33,6 @@ async function connectDB(){
 
 connectDB();
 
-app.use(cors());
 
 
 // view engine setup

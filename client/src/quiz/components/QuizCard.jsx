@@ -62,9 +62,10 @@ export default function QuizCard(props) {
               style={{
                 padding: '20px 0'
               }}
+              id={quiz_id}
             >
               <div
-                id={quiz._id}
+                id={'option1'}
                 style={isAnswered ? { pointerEvents: 'none' } : {}}
                 className={`btn notification is-primary ${
                   isAnswered && 'option1' === quiz.answer
@@ -78,7 +79,7 @@ export default function QuizCard(props) {
                 <h4 className='title is-5'>{quiz.option1}</h4>
               </div>
               <div
-                id={quiz._id}
+                id={'option2'}
                 className={`btn notification is-primary ${
                   isAnswered && 'option2' === quiz.answer
                     ? 'is-success'
@@ -92,7 +93,7 @@ export default function QuizCard(props) {
                 <h4 className='title is-5'>{quiz.option2}</h4>
               </div>
               <div
-                id={quiz._id}
+                id={'option3'}
                 className={`btn notification is-primary ${
                   isAnswered && 'option3' === quiz.answer
                     ? 'is-success'
@@ -106,7 +107,7 @@ export default function QuizCard(props) {
                 <h4 className='title is-5'>{quiz.option3}</h4>
               </div>
               <div
-                id={quiz._id}
+                id={'option4'}
                 className={`btn notification is-primary ${
                   isAnswered && 'option4' === quiz.answer
                     ? 'is-success'

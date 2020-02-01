@@ -27,7 +27,6 @@ export default function usersReducer(state = initialState, action) {
         ...state,
         isLoading: false,
           user: action.payload.user,
-          // currentScore: action.payload.currentScore || 0
       };
 
     case 'LOGOUT':

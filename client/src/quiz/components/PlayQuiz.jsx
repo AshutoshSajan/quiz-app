@@ -29,7 +29,8 @@ class PlayQuiz extends Component {
     if (counter <= quiz.length - 1) {
       if (option && option === question.answer) {
         if (option && counter < quiz.length - 1) {
-          document.getElementById(question._id).classList.add('is-success');
+          // document.getElementById(question._id).classList.add('is-success');
+          document.getElementById(option).classList.add('is-success');
         }
 
         this.setState(
@@ -58,7 +59,9 @@ class PlayQuiz extends Component {
         );
       } else {
         if (option && counter < quiz.length - 1) {
-          document.getElementById(question._id).classList.add('is-danger');
+          // document.getElementById(question._id).classList.add('is-danger');
+          document.getElementById(option).classList.add('is-danger');
+
         }
 
         this.setState({ isAnswered: !this.state.isAnswered });
