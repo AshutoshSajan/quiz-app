@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import QuizCard from './QuizCard.jsx';
 import { handleFetchQuizzes, handleUpdateScore, deleteQuiz } from '../actions';
 
-const BASE_URL = 'http://localhost:3000/api/v1';
+const BASE_URL = 'http://localhost:5000/api/v1';
 class PlayQuiz extends Component {
   state = {
     quizzes: [],
