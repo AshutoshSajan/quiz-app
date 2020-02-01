@@ -6,6 +6,9 @@ const jwtAuth = require('../utils/jwtAuth');
 module.exports = {
   // create/register user
   registerUser: (req, res) => {
+
+    console.log(req.body, 'inside register user...');
+    
     User.findOne({
       email: req.body.email
     }, (err, user) => {
@@ -51,6 +54,9 @@ module.exports = {
 
   // user login
   loginUser: (req, res) => {
+    
+    console.log(req.body, "inside login user...");
+    
     User.findOne({
         email: req.body.email
       })
