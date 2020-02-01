@@ -17,6 +17,8 @@ app.use(function(req, res, next) {
   next();
 });
 
+console.log(process.env, "process env vars...");
+
 async function connectDB(){
 	try {
 		await mongoose.connect(process.env.MONGO_URI, {
