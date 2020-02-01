@@ -11,19 +11,24 @@ const indexRouter = require('./server/routes');
 
 const app = express();
 
-mongoose.connect(
-  process.env.MONGO_URI,
-  {
-    useNewUrlParser: true,
-    useFindAndModify: false,
-    useCreateIndex: true,
-    useUnifiedTopology: true
-  },
-  (err, connection) => {
-    if (err) throw err;
-    else if (connection) console.log('connected to mongodb...');
-  }
-);
+const connectDB = async () => {
+	try {
+		await mongoose.connect(process.env.MONGO_URI, {
+			useNewUrlParser: true,
+			useCreateIndex: true,
+			useFindAndModify: false,
+			useUnifiedTopology: true
+		});
+
+		console.log('MongoDB Connected...');
+	} catch (err) {
+		console.error(err.message);
+		// Exit process with failure
+		process.exit(1);
+	}
+};
+
+connectDB();
 
 
 
