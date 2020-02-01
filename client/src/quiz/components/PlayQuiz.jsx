@@ -44,7 +44,6 @@ class PlayQuiz extends Component {
               type: 'UPDATE_CURRENT_SCORE',
               payload: this.state.score
             }),
-          console.log('UPDATE_CURRENT_SCORE')
         );
 
         setTimeout(
@@ -119,8 +118,6 @@ class PlayQuiz extends Component {
   render() {
     const { counter, isAnswered } = this.state;
     const { quiz, user } = this.props;
-
-    console.log(quiz, user, '....');
 
     return (
       <div style={{ marginTop: '100px ' }}>

@@ -35,7 +35,6 @@ export function handleUserLogin(url, user, history) {
       })
       .then(res => res.json())
       .then(data => {
-        console.log(data, 'user login data');
         if (data && data.success) {
           if (data.token) localStorage.setItem('jwt', data.token);
           dispatch({
