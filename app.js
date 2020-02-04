@@ -63,11 +63,13 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 app.use(
-  '/api',
+  '/api/v1',
+  indexRouter,
   proxy({
     target: 'http://localhost:8000',
     changeOrigin: true
-  })
+  }),
+
 );
 
 // app.use('/api/v1', indexRouter);
@@ -79,12 +81,12 @@ app.use('*', (req, res) =>
 );
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
