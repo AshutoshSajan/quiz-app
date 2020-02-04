@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import QuizCard from './QuizCard.jsx';
 import { handleFetchQuizzes, handleUpdateScore, deleteQuiz } from '../actions';
 
-const BASE_URL = 'http://localhost:5000/api/v1';
+import { BASE_URL } from '../../static';
 class PlayQuiz extends Component {
   state = {
     quizzes: [],
@@ -43,7 +43,7 @@ class PlayQuiz extends Component {
             this.props.dispatch({
               type: 'UPDATE_CURRENT_SCORE',
               payload: this.state.score
-            }),
+            })
         );
 
         setTimeout(
@@ -60,7 +60,6 @@ class PlayQuiz extends Component {
         if (option && counter < quiz.length - 1) {
           // document.getElementById(question._id).classList.add('is-danger');
           document.getElementById(option).classList.add('is-danger');
-
         }
 
         this.setState({ isAnswered: !this.state.isAnswered });

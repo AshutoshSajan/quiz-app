@@ -5,7 +5,8 @@ import QuizCard from '../components/QuizCard.jsx';
 
 import { handleFetchQuizzes, handleUpdateScore, deleteQuiz } from '../actions';
 
-const BASE_URL = 'http://localhost:5000/api/v1';
+import { BASE_URL } from '../../static';
+
 class ListQuiz extends Component {
   state = {
     seletedCategory: 'all',
@@ -35,9 +36,9 @@ class ListQuiz extends Component {
             type: 'UPDATE_CURRENT_SCORE',
             payload: this.state.score
           });
-          
+
           let div = document.getElementById(quiz._id);
-          if(div) div.style.pointerEvents = "none";
+          if (div) div.style.pointerEvents = 'none';
 
           this.handleScroll();
           setTimeout(() => {
@@ -47,9 +48,9 @@ class ListQuiz extends Component {
         }
       );
     } else {
-      if(quiz && quiz._id){
+      if (quiz && quiz._id) {
         let div = document.getElementById(quiz._id);
-        if(div) div.style.pointerEvents = "none";
+        if (div) div.style.pointerEvents = 'none';
       }
       this.handleScroll();
       return null;

@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 
 import { handleUserLogin } from '../actions';
 
-const BASE_URL = 'http://localhost:5000/api/v1';
+import { BASE_URL } from '../../static';
+
 class Login extends Component {
   state = {
     user: {

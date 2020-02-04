@@ -9,7 +9,7 @@ import PublicRoutes from './app/componets/PublicRoutes.jsx';
 
 import { handleAutoLogin } from './user/actions';
 
-const BASE_URL = 'http://localhost:5000/api/v1';
+import { BASE_URL } from './static';
 
 class App extends Component {
   state = {};

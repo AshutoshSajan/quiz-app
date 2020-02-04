@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 
 import handleDeleteScore from '../actions';
 
-const BASE_URL = 'http://localhost:5000/api/v1';
+import { BASE_URL } from '../../static';
+
 class Score extends Component {
   deleteScore = id => {
     const { jwt } = localStorage;

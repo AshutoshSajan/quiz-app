@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { handleQuizUpdate } from '../actions';
 
-const BASE_URL = 'http://localhost:5000/api/v1';
+import { BASE_URL } from '../../static';
 
 class EditQuiz extends Component {
   state = {
@@ -30,7 +30,7 @@ class EditQuiz extends Component {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: token,
+        Authorization: token
       }
     })
       .then(res => res.json())
