@@ -64,14 +64,14 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 app.use(
-  '/api/v1',
+  '/api',
   proxy({
     target: 'http://localhost:8000',
     changeOrigin: true
   })
 );
 
-// app.use('/api/v1', indexRouter);
+app.use('/api/v1', indexRouter);
 
 app.use('*', (req, res) =>
   res.status(200).render('index', {
