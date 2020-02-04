@@ -7,7 +7,7 @@ const logger = require('morgan');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const indexRouter = require('./server/routes');
-const proxy = require('http-proxy-middleware')
+const proxy = require('http-proxy-middleware');
 
 const app = express();
 
@@ -28,10 +28,9 @@ async function connectDB() {
     // Exit process with failure
     process.exit(1);
   }
-};
+}
 
 connectDB();
-
 
 // view engine setup
 app.use(cookieParser());
@@ -71,7 +70,7 @@ app.use(
   })
 );
 
-app.use('/api/v1', indexRouter);
+// app.use('/api/v1', indexRouter);
 
 app.use('*', (req, res) =>
   res.status(200).render('index', {
@@ -80,12 +79,12 @@ app.use('*', (req, res) =>
 );
 
 // catch 404 and forward to error handler
-app.use(function (req, res, next) {
+app.use(function(req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function (err, req, res, next) {
+app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
