@@ -47,6 +47,10 @@ app.use(
   })
 );
 
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/dist'));
+}
+
 if (process.env.NODE_ENV === 'development') {
   var webpack = require('webpack');
   var webpackConfig = require('./webpack.config');
@@ -62,17 +66,17 @@ if (process.env.NODE_ENV === 'development') {
   app.use(require('webpack-hot-middleware')(compiler));
 }
 
-app.use(
-  '/api/v1',
-  indexRouter,
-  proxy({
-    target: 'http://localhost:8000',
-    changeOrigin: true
-  }),
+// app.use(
+//   '/api/v1',
+//   indexRouter,
+//   proxy({
+//     target: 'http://localhost:8000',
+//     changeOrigin: true
+//   }),
 
-);
+// );
 
-// app.use('/api/v1', indexRouter);
+app.use('/api/v1', indexRouter);
 
 app.use('*', (req, res) =>
   res.status(200).render('index', {
