@@ -8,31 +8,28 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const indexRouter = require('./server/routes');
 
-
 const app = express();
-
 
 app.use(cors());
 
-async function connectDB(){
-	try {
-		await mongoose.connect(process.env.MONGO_URI, {
-			useNewUrlParser: true,
-			useCreateIndex: true,
-			useFindAndModify: false,
-			useUnifiedTopology: true
-		});
+async function connectDB() {
+  try {
+    await mongoose.connect(process.env.MONGO_URI, {
+      useNewUrlParser: true,
+      useCreateIndex: true,
+      useFindAndModify: false,
+      useUnifiedTopology: true
+    });
 
-		console.log('MongoDB Connected...');
-	} catch (err) {
-		console.error(err.message);
-		// Exit process with failure
-		process.exit(1);
-	}
+    console.log('MongoDB Connected...');
+  } catch (err) {
+    console.error(err.message);
+    // Exit process with failure
+    process.exit(1);
+  }
 };
 
 connectDB();
-
 
 
 // view engine setup
@@ -74,12 +71,12 @@ app.use('*', (req, res) =>
 );
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
