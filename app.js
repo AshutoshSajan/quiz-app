@@ -7,6 +7,7 @@ const logger = require('morgan');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const indexRouter = require('./server/routes');
+const proxy = require('http-proxy-middleware')
 
 const app = express();
 
@@ -62,7 +63,15 @@ if (process.env.NODE_ENV === 'development') {
   app.use(require('webpack-hot-middleware')(compiler));
 }
 
-app.use('/api/v1', indexRouter);
+app.use(
+  '/api/v1',
+  proxy({
+    target: 'http://localhost:8000',
+    changeOrigin: true
+  })
+);
+
+// app.use('/api/v1', indexRouter);
 
 app.use('*', (req, res) =>
   res.status(200).render('index', {

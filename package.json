@@ -16,6 +16,7 @@
     "ejs": "^3.0.1",
     "express": "^4.17.1",
     "http-errors": "^1.7.3",
+    "http-proxy-middleware": "^0.20.0",
     "jsonwebtoken": "^8.5.1",
     "mini-css-extract-plugin": "^0.9.0",
     "mongoose": "^5.8.11",
@@ -50,7 +51,9 @@
     "start": "NODE_ENV=development node ./bin/www",
     "dev": "webpack --mode development && node ./app.js",
     "build": "webpack --mode production",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "client": "npm run start --prefix client",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "sajan",
   "license": "ISC",
