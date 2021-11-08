@@ -10,6 +10,8 @@ const indexRouter = require("./routes/index");
 
 const app = express();
 
+console.log({ env: process.env });
+
 mongoose.connect(
   process.env.LOCAL_MONGO_URI,
   {
