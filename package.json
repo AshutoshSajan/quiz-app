@@ -48,7 +48,7 @@
     "webpack-cli": "^3.3.10"
   },
   "scripts": {
-    "start": "NODE_ENV=development node ./bin/www",
+    "start": "NODE_ENV=development nodemon ./bin/www",
     "dev": "webpack --mode development && node ./app.js",
     "build": "webpack --mode production",
     "test": "echo \"Error: no test specified\" && exit 1"
