@@ -10,6 +10,30 @@ const indexRouter = require("./server/routes");
 
 const app = express();
 
+const mongoURI =
+  process.env.NODE_ENV === "development"
+    ? process.env.LOCAL_MONGO_URI
+    : process.env.MONGO_URI;
+
+async function connectDB() {
+  try {
+    await mongoose.connect(mongoURI, {
+      useNewUrlParser: true,
+      useCreateIndex: true,
+      useFindAndModify: false,
+      useUnifiedTopology: true,
+    });
+
+    console.log("MongoDB Connected...");
+  } catch (err) {
+    console.error(err.message);
+    // Exit process with failure
+    process.exit(1);
+  }
+}
+
+connectDB();
+
 app.use(cors());
 
 // view engine setup
@@ -45,25 +69,6 @@ if (process.env.NODE_ENV === "development") {
 
   app.use(require("webpack-hot-middleware")(compiler));
 }
-
-async function connectDB() {
-  try {
-    await mongoose.connect(process.env.MONGO_URI, {
-      useNewUrlParser: true,
-      useCreateIndex: true,
-      useFindAndModify: false,
-      useUnifiedTopology: true,
-    });
-
-    console.log("MongoDB Connected...");
-  } catch (err) {
-    console.error(err.message);
-    // Exit process with failure
-    process.exit(1);
-  }
-}
-
-connectDB();
 
 app.use("/api/v1", indexRouter);
 
