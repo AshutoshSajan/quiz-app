@@ -1,3 +1,4 @@
-LOCAL_MONGO_URI=your mongo URI
+MONGO_URI=your production mongo URI
+LOCAL_MONGO_URI=your local mongo URI
 JWT_SECRET=your JWT secret
 EMAIL=admin email address
