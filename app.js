@@ -45,20 +45,18 @@ app.set("view engine", "ejs");
 
 app.use(logger("dev"));
 app.use(express.json());
-app.use(
-  express.urlencoded({
-    extended: false,
-  })
-);
+app.use(express.urlencoded({ extended: false }));
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/dist"));
 }
 
 if (process.env.NODE_ENV === "development") {
-  var webpack = require("webpack");
-  var webpackConfig = require("./webpack.config");
-  var compiler = webpack(webpackConfig);
+  const webpack = require("webpack");
+  const webpackConfig = require("./webpack.config");
+  const compiler = webpack(webpackConfig);
+
+  app.use(express.static("./server/views/index.ejs"));
 
   app.use(
     require("webpack-dev-middleware")(compiler, {
