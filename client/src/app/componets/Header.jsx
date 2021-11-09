@@ -1,9 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
 export default function Header({ user, handleLogout }) {
-  const [toolTip, setTooltip] = useState(false);
-
   return (
     <nav
       className="navbar is-dark"
@@ -92,23 +90,15 @@ export default function Header({ user, handleLogout }) {
                   <strong>Log out</strong>
                 </Link>
 
-                <button
-                  className={`button ${
-                    toolTip ? "is-danger" : "is-warning"
-                  } is-rounded`}
-                  onMouseEnter={() => setTooltip(true)}
-                  onMouseLeave={() => setTooltip(!true)}
-                >
+                <button className="button is-primary is-light">
                   <strong>
-                    {toolTip && user && user.user && user.user.isAdmin
-                      ? "Admin user"
-                      : toolTip && user && user.user && !user.user.isAdmin
-                      ? "User"
-                      : user && user.user
-                      ? user.user.name
-                      : ""}
+                    {user?.user?.name ? user?.user?.name : "User"}
                   </strong>
                 </button>
+
+                {user?.user?.isAdmin && (
+                  <span class="tag is-primary">Admin</span>
+                )}
               </>
             )}
           </div>
