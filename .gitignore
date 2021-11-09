@@ -6,3 +6,4 @@ dist
 .npm
 # Mac
 .DS_Store
+.vscode

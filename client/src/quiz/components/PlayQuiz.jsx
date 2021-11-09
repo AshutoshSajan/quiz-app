@@ -1,22 +1,20 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-
-import QuizCard from './QuizCard.jsx';
-import { handleFetchQuizzes, handleUpdateScore, deleteQuiz } from '../actions';
-
-import { BASE_URL } from '../../static';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import QuizCard from "./QuizCard.jsx";
+import { handleFetchQuizzes, handleUpdateScore, deleteQuiz } from "../actions";
+import { BASE_URL } from "../../static";
 class PlayQuiz extends Component {
   state = {
     quizzes: [],
     counter: 0,
     isAnswered: false,
-    score: 0
+    score: 0,
   };
 
   componentDidMount() {
     const { jwt } = localStorage;
     if (jwt) {
-      this.props.dispatch(handleFetchQuizzes(BASE_URL + '/quizzes', jwt));
+      this.props.dispatch(handleFetchQuizzes(BASE_URL + "/quizzes", jwt));
     }
   }
 
@@ -29,29 +27,29 @@ class PlayQuiz extends Component {
       if (option && option === question.answer) {
         if (option && counter < quiz.length - 1) {
           // document.getElementById(question._id).classList.add('is-success');
-          document.getElementById(option).classList.add('is-success');
+          document.getElementById(option).classList.add("is-success");
         }
 
         this.setState(
-          state => {
+          (state) => {
             return {
               score: state.score + 1,
-              isAnswered: !state.isAnswered
+              isAnswered: !state.isAnswered,
             };
           },
           () =>
             this.props.dispatch({
-              type: 'UPDATE_CURRENT_SCORE',
-              payload: this.state.score
+              type: "UPDATE_CURRENT_SCORE",
+              payload: this.state.score,
             })
         );
 
         setTimeout(
           () =>
-            this.setState(state => {
+            this.setState((state) => {
               return {
                 counter: state.counter + 1,
-                isAnswered: !state.isAnswered
+                isAnswered: !state.isAnswered,
               };
             }),
           500
@@ -59,16 +57,16 @@ class PlayQuiz extends Component {
       } else {
         if (option && counter < quiz.length - 1) {
           // document.getElementById(question._id).classList.add('is-danger');
-          document.getElementById(option).classList.add('is-danger');
+          document.getElementById(option).classList.add("is-danger");
         }
 
         this.setState({ isAnswered: !this.state.isAnswered });
         setTimeout(
           () =>
-            this.setState(state => {
+            this.setState((state) => {
               return {
                 counter: state.counter + 1,
-                isAnswered: !state.isAnswered
+                isAnswered: !state.isAnswered,
               };
             }),
           500
@@ -82,19 +80,19 @@ class PlayQuiz extends Component {
   resetCounter = () => {
     this.setState({ counter: 0, score: 0 }, () => {
       this.props.dispatch({
-        type: 'UPDATE_CURRENT_SCORE',
-        payload: this.state.score
+        type: "UPDATE_CURRENT_SCORE",
+        payload: this.state.score,
       });
     });
   };
 
-  handleDeleteQuiz = id => {
+  handleDeleteQuiz = (id) => {
     const { jwt } = localStorage;
 
     if (jwt) {
       this.props.dispatch(
         deleteQuiz(
-          BASE_URL + '/quizzes/' + id + '/delete',
+          BASE_URL + "/quizzes/" + id + "/delete",
           jwt,
           id,
           this.props.history
@@ -106,11 +104,11 @@ class PlayQuiz extends Component {
   handleSubmitScore = () => {
     const { jwt } = localStorage;
     const { score } = this.state;
-    const scoreData = { score, category: 'all' };
+    const scoreData = { score, category: "all" };
 
     if (jwt) {
       this.props.dispatch(
-        handleUpdateScore(BASE_URL + '/users/score/update', jwt, scoreData)
+        handleUpdateScore(BASE_URL + "/users/score/update", jwt, scoreData)
       );
     }
     this.resetCounter();
@@ -121,7 +119,7 @@ class PlayQuiz extends Component {
     const { quiz, user } = this.props;
 
     return (
-      <div style={{ marginTop: '100px ' }}>
+      <div style={{ marginTop: "100px " }}>
         {quiz.quiz && quiz.quiz.length ? (
           <QuizCard
             quiz={counter <= quiz.quiz.length - 1 ? quiz.quiz[counter] : null}
@@ -133,7 +131,7 @@ class PlayQuiz extends Component {
             submitScore={this.handleSubmitScore}
           />
         ) : (
-          ''
+          ""
         )}
       </div>
     );

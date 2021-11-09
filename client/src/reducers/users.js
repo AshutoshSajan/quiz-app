@@ -1,51 +1,51 @@
 const initialState = {
   isLoading: true,
   user: null,
-  currentScore: 0
-}
+  currentScore: 0,
+};
 
 export default function usersReducer(state = initialState, action) {
   switch (action.type) {
-    case 'LOGIN':
+    case "LOGIN":
       return {
         ...state,
         isLoading: false,
-          token: action.payload.token,
-          user: action.payload.user,
+        token: action.payload.token,
+        user: action.payload.user,
       };
 
-    case 'REGISTER':
+    case "REGISTER":
       return {
         ...state,
         isLoading: false,
-          token: action.payload.token,
-          user: action.payload.user,
+        token: action.payload.token,
+        user: action.payload.user,
       };
 
-    case 'UPDATE_USER':
+    case "UPDATE_USER":
       return {
         ...state,
         isLoading: false,
-          user: action.payload.user,
+        user: action.payload.user,
       };
 
-    case 'LOGOUT':
+    case "LOGOUT":
       localStorage.clear();
       return {
         ...state,
         isLoading: true,
-          user: null,
-          token: null
+        user: null,
+        token: null,
       };
 
-    case 'UPDATE_CURRENT_SCORE':
+    case "UPDATE_CURRENT_SCORE":
       return {
         ...state,
         isLoading: false,
-          currentScore: action.payload || 0
-      }
+        currentScore: action.payload || 0,
+      };
 
-      default:
-        return state;
+    default:
+      return state;
   }
 }

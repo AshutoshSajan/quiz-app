@@ -1,73 +1,75 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const bcrypt = require('bcrypt');
+const bcrypt = require("bcrypt");
 const saltRounds = 10;
 
-const userSchema = new Schema({
-  name: {
-    type: String,
-    min: [3, "Username can't less than 3 characters"],
-    max: [20, "Username can't be more than 20 characters"],
-    required: [true, "Username can't be blank"],
-  },
-  email: {
-    type: String,
-    required: [true, 'Email address should be unique'],
-    unique: [true, 'Email address should be unique']
-  },
-  password: {
-    type: String,
-    required: [true, "Password can't be blank"],
-    min: [8, "Password can't be less than 8 characters"],
-    max: [20, "Password can't be more than 20 characters"]
-  },
-  isAdmin: {
-    type: Boolean,
-    default: false
-  },
-  score: {
-    type: Number,
-    default: 0
-  },
-  scores: [{
+const userSchema = new Schema(
+  {
+    name: {
+      type: String,
+      min: [3, "Username can't less than 3 characters"],
+      max: [20, "Username can't be more than 20 characters"],
+      required: [true, "Username can't be blank"],
+    },
+    email: {
+      type: String,
+      required: [true, "Email address should be unique"],
+      unique: [true, "Email address should be unique"],
+    },
+    password: {
+      type: String,
+      required: [true, "Password can't be blank"],
+      min: [8, "Password can't be less than 8 characters"],
+      max: [20, "Password can't be more than 20 characters"],
+    },
+    isAdmin: {
+      type: Boolean,
+      default: false,
+    },
     score: {
       type: Number,
-      default: 0
+      default: 0,
     },
-    category: {
-      type: String,
-      default: "all"
+    scores: [
+      {
+        score: {
+          type: Number,
+          default: 0,
+        },
+        category: {
+          type: String,
+          default: "all",
+        },
+        date: {
+          type: Date,
+          default: new Date(),
+        },
+      },
+    ],
+    totalScore: {
+      type: Number,
+      default: 0,
     },
-    date: {
-      type: Date,
-      default: new Date()
-    }
-  }],
-  totalScore: {
-    type: Number,
-    default: 0
+  },
+  {
+    timestamps: true,
   }
-}, {
-  timestamps: true
-});
-
+);
 
 // =======================================================================
-// password hashing & creating admin user 
+// password hashing & creating admin user
 // =======================================================================
-userSchema.pre('save', function (next) {
-  if (this.password && this.isModified('password')) {
-
+userSchema.pre("save", function (next) {
+  if (this.password && this.isModified("password")) {
     //generating salt
     bcrypt.genSalt(saltRounds, (err, salt) => {
-
-      // hashing the password 
+      // hashing the password
       bcrypt.hash(this.password, salt, (err, hash) => {
-
         if (err) {
           throw err;
         }
+
         if (hash) {
           this.password = hash;
 
@@ -83,6 +85,5 @@ userSchema.pre('save', function (next) {
   }
 });
 
-
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model("User", userSchema);
 module.exports = User;
