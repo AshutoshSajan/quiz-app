@@ -1,18 +1,19 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
-const path = require("path");
 var webpack = require("webpack");
 const nodeExternals = require("webpack-node-externals");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const BundleAnalyzerPlugin =
+  require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
 const htmlPlugin = new HtmlWebPackPlugin({
-  template: "./client/public/index.html",
-  filename: "./index.html",
+  // template: "./client/public/index.html",
+  template: "./server/views/index.ejs",
+  filename: "./index.ejs",
 });
 
 module.exports = {
   mode: process.env.NODE_ENV,
   entry: ["./client/src/index.js"],
-  plugins: [htmlPlugin],
   module: {
     rules: [
       {
@@ -41,6 +42,8 @@ module.exports = {
     publicPath: "/static/",
   },
   plugins: [
+    htmlPlugin,
+    // new BundleAnalyzerPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
       "process.env": {
@@ -50,6 +53,7 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: "bundle.css",
     }),
+    new webpack.optimize.AggressiveMergingPlugin(), //Merge chunks
   ],
   resolve: {
     extensions: [".webpack.js", ".web.js", ".tsx", ".ts", ".js", ".json"],
@@ -60,4 +64,5 @@ module.exports = {
     "react/lib/ExecutionEnvironment": true,
     "react/addons": true,
   },
+  optimization: {},
 };

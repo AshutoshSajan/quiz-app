@@ -30,6 +30,7 @@ class App extends Component {
 
   render() {
     const { user } = this.props;
+
     return (
       <div className="app" style={{ marginTop: "60px" }}>
         <Header user={user} handleLogout={this.handleLogout} />
