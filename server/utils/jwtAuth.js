@@ -3,17 +3,16 @@ const User = require("../models/User");
 
 module.exports = {
   // create jwt token
-  createToken: (id, secret) => {
-    return jwt.sign(
+  createToken: (id, secret) =>
+    jwt.sign(
       {
         userId: id,
       },
       secret,
       {
         expiresIn: "72h",
-      }
-    );
-  },
+      },
+    ),
 
   // jwt token verification
   verifyToken: (req, res, next) => {
@@ -71,7 +70,7 @@ module.exports = {
           req.user.isAdmin = user.isAdmin;
           next();
         }
-      }
+      },
     );
   },
 };

@@ -17,7 +17,7 @@ class Login extends Component {
     const { user } = this.state;
 
     this.props.dispatch(
-      handleUserLogin(BASE_URL + "/users/login", user, this.props.history)
+      handleUserLogin(BASE_URL + "/users/login", user, this.props.history),
     );
   };
 

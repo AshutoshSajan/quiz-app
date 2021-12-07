@@ -62,7 +62,7 @@ if (process.env.NODE_ENV === "development") {
     require("webpack-dev-middleware")(compiler, {
       noInfo: true,
       publicPath: webpackConfig.output.publicPath,
-    })
+    }),
   );
 
   app.use(require("webpack-hot-middleware")(compiler));
@@ -73,7 +73,7 @@ app.use("/api/v1", indexRouter);
 app.use("*", (req, res) =>
   res.status(200).render("index", {
     title: "Express React Quiz App",
-  })
+  }),
 );
 
 // catch 404 and forward to error handler

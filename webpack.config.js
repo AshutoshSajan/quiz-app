@@ -1,9 +1,8 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
-var webpack = require("webpack");
+const webpack = require("webpack");
 const nodeExternals = require("webpack-node-externals");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const BundleAnalyzerPlugin =
-  require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
+// const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
 const htmlPlugin = new HtmlWebPackPlugin({
   // template: "./client/public/index.html",
@@ -38,7 +37,7 @@ module.exports = {
   },
   output: {
     filename: "bundle.js",
-    path: __dirname + "/dist/bundle/",
+    path: `${__dirname}/dist/bundle/`,
     publicPath: "/static/",
   },
   plugins: [
@@ -53,16 +52,18 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: "bundle.css",
     }),
-    new webpack.optimize.AggressiveMergingPlugin(), //Merge chunks
+    new webpack.optimize.AggressiveMergingPlugin(), // Merge chunks
   ],
   resolve: {
     extensions: [".webpack.js", ".web.js", ".tsx", ".ts", ".js", ".json"],
   },
-  externals: [nodeExternals()],
-  externals: {
-    "react/lib/ReactContext": "window",
-    "react/lib/ExecutionEnvironment": true,
-    "react/addons": true,
-  },
+  externals: [
+    nodeExternals(),
+    {
+      "react/lib/ReactContext": "window",
+      "react/lib/ExecutionEnvironment": true,
+      "react/addons": true,
+    },
+  ],
   optimization: {},
 };

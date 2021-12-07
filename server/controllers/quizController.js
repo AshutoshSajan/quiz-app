@@ -24,7 +24,7 @@ module.exports = {
   },
 
   getQuiz: (req, res) => {
-    const id = req.params.id;
+    const { id } = req.params;
 
     Quiz.findOne(
       {
@@ -48,7 +48,7 @@ module.exports = {
             message: "page not found",
           });
         }
-      }
+      },
     );
   },
 
@@ -75,7 +75,7 @@ module.exports = {
   },
 
   updateQuiz: (req, res) => {
-    const id = req.params.id;
+    const { id } = req.params;
 
     Quiz.findOneAndUpdate(
       {
@@ -105,7 +105,7 @@ module.exports = {
             message: "page not found",
           });
         }
-      }
+      },
     );
   },
 
@@ -133,7 +133,7 @@ module.exports = {
   },
 
   deleteQuiz: (req, res) => {
-    const id = req.params.id;
+    const { id } = req.params;
 
     Quiz.findOneAndDelete(
       {
@@ -157,7 +157,7 @@ module.exports = {
             message: "page not found",
           });
         }
-      }
+      },
     );
   },
 };

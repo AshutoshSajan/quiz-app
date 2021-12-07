@@ -24,7 +24,7 @@ export default function quizReducer(state = initialState, action) {
         category: [
           "all",
           ...new Set(
-            [...state.quiz, action.payload].map((quiz) => quiz.category)
+            [...state.quiz, action.payload].map((quiz) => quiz.category),
           ),
         ],
       };
@@ -37,7 +37,7 @@ export default function quizReducer(state = initialState, action) {
         category: [
           "all",
           ...new Set(
-            [...state.quiz, action.payload].map((quiz) => quiz.category)
+            [...state.quiz, action.payload].map((quiz) => quiz.category),
           ),
         ],
       };
@@ -52,7 +52,7 @@ export default function quizReducer(state = initialState, action) {
           ...new Set(
             state.quiz
               .filter((question) => question._id !== action.payload)
-              .map((quiz) => quiz.category)
+              .map((quiz) => quiz.category),
           ),
         ],
       };

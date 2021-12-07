@@ -16,7 +16,7 @@ class App extends Component {
 
     if (jwt) {
       this.props.dispatch(
-        handleAutoLogin(BASE_URL + "/users/me", jwt, this.props.history)
+        handleAutoLogin(BASE_URL + "/users/me", jwt, this.props.history),
       );
     } else if (!jwt) {
       this.props.history.push("/users/login");

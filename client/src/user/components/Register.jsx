@@ -36,15 +36,15 @@ class Register extends Component {
         handleUserRegister(
           BASE_URL + "/users/register",
           user,
-          this.props.history
-        )
+          this.props.history,
+        ),
       );
     } else {
       this.setState(
         {
           error: "Required field is missing",
         },
-        () => setTimeout(() => this.setState({ error: "" }), 2000)
+        () => setTimeout(() => this.setState({ error: "" }), 2000),
       );
     }
   };

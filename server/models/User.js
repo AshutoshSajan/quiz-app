@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
-
+const { Schema } = mongoose;
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 
@@ -54,7 +53,7 @@ const userSchema = new Schema(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 // =======================================================================
@@ -62,11 +61,11 @@ const userSchema = new Schema(
 // =======================================================================
 userSchema.pre("save", function (next) {
   if (this.password && this.isModified("password")) {
-    //generating salt
+    // generating salt
     bcrypt.genSalt(saltRounds, (err, salt) => {
       // hashing the password
-      bcrypt.hash(this.password, salt, (err, hash) => {
-        if (err) {
+      bcrypt.hash(this.password, salt, (error, hash) => {
+        if (error) {
           throw err;
         }
 

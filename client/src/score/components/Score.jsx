@@ -7,7 +7,7 @@ class Score extends Component {
   deleteScore = (id) => {
     const { jwt } = localStorage;
     this.props.dispatch(
-      handleDeleteScore(BASE_URL + "/users/score/" + id + "/delete", jwt)
+      handleDeleteScore(BASE_URL + "/users/score/" + id + "/delete", jwt),
     );
   };
 

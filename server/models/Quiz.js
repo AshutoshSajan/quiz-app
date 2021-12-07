@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+const { Schema } = mongoose;
 
 const quizSchema = new Schema(
   {
@@ -34,7 +34,7 @@ const quizSchema = new Schema(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 const Quiz = mongoose.model("Quiz", quizSchema);

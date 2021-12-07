@@ -36,7 +36,7 @@ class CreateQuiz extends Component {
     ) {
       const quiz = { ...this.state, answer: answer.toLowerCase() };
       this.props.dispatch(
-        handleCreateQuiz(BASE_URL + "/quizzes", jwt, quiz, this.props.history)
+        handleCreateQuiz(BASE_URL + "/quizzes", jwt, quiz, this.props.history),
       );
     }
   };

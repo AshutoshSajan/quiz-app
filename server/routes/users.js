@@ -9,7 +9,7 @@ router.get(
   "/",
   jwtAuth.verifyToken,
   jwtAuth.isAdmin,
-  userController.getAllUsers
+  userController.getAllUsers,
 );
 
 // token login
@@ -20,7 +20,7 @@ router.get(
   "/:id",
   jwtAuth.verifyToken,
   jwtAuth.isAdmin,
-  userController.getUser
+  userController.getUser,
 );
 
 // login user
@@ -36,14 +36,14 @@ router.put("/update", jwtAuth.verifyToken, userController.updateUser);
 router.put(
   "/score/update",
   jwtAuth.verifyToken,
-  userController.updateUserScore
+  userController.updateUserScore,
 );
 
 // delete score
 router.delete(
   "/score/:id/delete",
   jwtAuth.verifyToken,
-  userController.deleteScore
+  userController.deleteScore,
 );
 
 // delete user

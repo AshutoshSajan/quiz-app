@@ -19,20 +19,21 @@ module.exports = {
             error: err,
           });
         } else if (!user) {
-          User.create(req.body, (err, user) => {
-            if (err) {
+          User.create(req.body, (error, newUser) => {
+            if (error) {
               res.status(500).json({
                 success: false,
                 message: "server error",
                 error: err,
               });
-            } else if (user) {
-              user.password = undefined;
+            } else if (newUser) {
+              newUser.password = undefined;
 
               const token = jwtAuth.createToken(
-                user.id,
-                process.env.JWT_SECRET
+                newUser.id,
+                process.env.JWT_SECRET,
               );
+
               res.status(200).json({
                 success: true,
                 message: "user created",
@@ -52,14 +53,12 @@ module.exports = {
             message: "page not found...",
           });
         }
-      }
+      },
     );
   },
 
   // user login
   loginUser: (req, res) => {
-    console.log(req.body, "inside login user...");
-
     User.findOne({
       email: req.body.email,
     }).exec((err, user) => {
@@ -189,7 +188,7 @@ module.exports = {
             message: "page not found",
           });
         }
-      }
+      },
     );
   },
 
@@ -228,7 +227,7 @@ module.exports = {
             message: "page not found",
           });
         }
-      }
+      },
     );
   },
 
@@ -269,7 +268,7 @@ module.exports = {
             message: "page not found",
           });
         }
-      }
+      },
     );
   },
 

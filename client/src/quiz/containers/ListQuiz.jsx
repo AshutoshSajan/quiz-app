@@ -43,7 +43,7 @@ class ListQuiz extends Component {
             let elm = document.getElementById(option);
             if (elm) elm.classList.remove("is-danger");
           }, 300);
-        }
+        },
       );
     } else {
       if (quiz && quiz._id) {
@@ -57,7 +57,7 @@ class ListQuiz extends Component {
 
   updateUserScore = (score, jwt) => {
     this.props.dispatch(
-      handleUpdateScore(BASE_URL + "/users/score/update", jwt, score)
+      handleUpdateScore(BASE_URL + "/users/score/update", jwt, score),
     );
   };
 
@@ -68,8 +68,8 @@ class ListQuiz extends Component {
         BASE_URL + "/quizzes/" + id + "/delete",
         jwt,
         id,
-        this.props.history
-      )
+        this.props.history,
+      ),
     );
   };
 
@@ -82,14 +82,14 @@ class ListQuiz extends Component {
         () => {
           this.setState({
             filteredQuiz: this.props.quiz.quiz.filter(
-              (quiz) => quiz.category === category
+              (quiz) => quiz.category === category,
             ),
           });
           this.props.dispatch({
             type: "UPDATE_CURRENT_SCORE",
             payload: this.state.score,
           });
-        }
+        },
       );
     }
   };

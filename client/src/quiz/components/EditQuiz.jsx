@@ -65,7 +65,7 @@ class EditQuiz extends Component {
 
       const url = BASE_URL + "/quizzes/" + questionId + "/update";
       this.props.dispatch(
-        handleQuizUpdate(url, jwt, quiz, questionId, this.props.history)
+        handleQuizUpdate(url, jwt, quiz, questionId, this.props.history),
       );
     }
   };

@@ -10,14 +10,14 @@ router.post(
   "/",
   jwtAuth.verifyToken,
   jwtAuth.isAdmin,
-  quizController.createQuiz
+  quizController.createQuiz,
 );
 
 router.post(
   "/create-many",
   jwtAuth.verifyToken,
   jwtAuth.isAdmin,
-  quizController.createQuizzes
+  quizController.createQuizzes,
 );
 
 router.get("/:id", jwtAuth.verifyToken, quizController.getQuiz);
@@ -26,14 +26,14 @@ router.put(
   "/:id/update",
   jwtAuth.verifyToken,
   jwtAuth.isAdmin,
-  quizController.updateQuiz
+  quizController.updateQuiz,
 );
 
 router.delete(
   "/:id/delete",
   jwtAuth.verifyToken,
   jwtAuth.isAdmin,
-  quizController.deleteQuiz
+  quizController.deleteQuiz,
 );
 
 module.exports = router;

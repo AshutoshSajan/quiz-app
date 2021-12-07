@@ -41,7 +41,7 @@ class PlayQuiz extends Component {
             this.props.dispatch({
               type: "UPDATE_CURRENT_SCORE",
               payload: this.state.score,
-            })
+            }),
         );
 
         setTimeout(
@@ -52,7 +52,7 @@ class PlayQuiz extends Component {
                 isAnswered: !state.isAnswered,
               };
             }),
-          500
+          500,
         );
       } else {
         if (option && counter < quiz.length - 1) {
@@ -69,7 +69,7 @@ class PlayQuiz extends Component {
                 isAnswered: !state.isAnswered,
               };
             }),
-          500
+          500,
         );
       }
     } else {
@@ -95,8 +95,8 @@ class PlayQuiz extends Component {
           BASE_URL + "/quizzes/" + id + "/delete",
           jwt,
           id,
-          this.props.history
-        )
+          this.props.history,
+        ),
       );
     }
   };
@@ -108,7 +108,7 @@ class PlayQuiz extends Component {
 
     if (jwt) {
       this.props.dispatch(
-        handleUpdateScore(BASE_URL + "/users/score/update", jwt, scoreData)
+        handleUpdateScore(BASE_URL + "/users/score/update", jwt, scoreData),
       );
     }
     this.resetCounter();
