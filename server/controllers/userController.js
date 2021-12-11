@@ -1,11 +1,11 @@
-const bcrypt = require("bcrypt");
-const User = require("../models/User");
-const jwtAuth = require("../utils/jwtAuth");
+const bcrypt = require('bcrypt');
+const User = require('../models/User');
+const jwtAuth = require('../utils/jwtAuth');
 
 module.exports = {
   // create/register user
   registerUser: (req, res) => {
-    console.log(req.body, "inside register user...");
+    console.log(req.body, 'inside register user...');
 
     User.findOne(
       {
@@ -15,7 +15,7 @@ module.exports = {
         if (err) {
           res.status(500).json({
             success: false,
-            message: "server error",
+            message: 'server error',
             error: err,
           });
         } else if (!user) {
@@ -23,7 +23,7 @@ module.exports = {
             if (error) {
               res.status(500).json({
                 success: false,
-                message: "server error",
+                message: 'server error',
                 error: err,
               });
             } else if (newUser) {
@@ -36,7 +36,7 @@ module.exports = {
 
               res.status(200).json({
                 success: true,
-                message: "user created",
+                message: 'user created',
                 user,
                 token,
               });
@@ -45,12 +45,12 @@ module.exports = {
         } else if (user) {
           res.status(400).json({
             success: false,
-            message: "user alredy exist",
+            message: 'user alredy exist',
           });
         } else {
           res.status(404).json({
             success: false,
-            message: "page not found...",
+            message: 'page not found...',
           });
         }
       },
@@ -65,13 +65,13 @@ module.exports = {
       if (err) {
         res.status(500).json({
           success: false,
-          message: "server error",
+          message: 'server error',
           error: err,
         });
       } else if (!user) {
         res.status(400).json({
           success: false,
-          message: "user does not exist.",
+          message: 'user does not exist.',
         });
       } else if (user) {
         const plainPassword = req.body.password;
@@ -80,7 +80,7 @@ module.exports = {
           if (err) {
             res.status(400).json({
               success: false,
-              message: "bcrypt password compare error",
+              message: 'bcrypt password compare error',
               error: err,
             });
           } else if (match) {
@@ -89,14 +89,14 @@ module.exports = {
 
             res.status(200).json({
               success: true,
-              message: "user login successfull :)",
+              message: 'user login successfull :)',
               user,
               token,
             });
           } else if (!match) {
             res.status(400).json({
               success: false,
-              message: "invalid password",
+              message: 'invalid password',
             });
           }
         });
@@ -109,18 +109,18 @@ module.exports = {
     const id = req.user.userId;
 
     User.findById(id)
-      .select("-password -__v -createdAt -updatedAt")
+      .select('-password -__v -createdAt -updatedAt')
       .exec((err, user) => {
         if (err) {
           res.status(500).json({
             success: false,
-            message: "server error",
+            message: 'server error',
             error: err,
           });
         }
         res.status(200).json({
           success: true,
-          message: "user found",
+          message: 'user found',
           user,
         });
       });
@@ -130,18 +130,18 @@ module.exports = {
   getAllUsers: (req, res) => {
     if (req.user.isAdmin) {
       User.find({})
-        .select("-password -__v -createdAt -updatedAt")
+        .select('-password -__v -createdAt -updatedAt')
         .exec((err, users) => {
           if (err) {
             res.status(500).json({
               success: false,
-              message: "server error",
+              message: 'server error',
               error: err,
             });
           } else {
             res.status(200).json({
               success: true,
-              message: "users found",
+              message: 'users found',
               users,
             });
           }
@@ -149,7 +149,7 @@ module.exports = {
     } else {
       res.status(404).json({
         success: false,
-        message: "not authorized",
+        message: 'not authorized',
       });
     }
   },
@@ -171,7 +171,7 @@ module.exports = {
         if (err) {
           res.status(500).json({
             success: false,
-            message: "server error",
+            message: 'server error',
             error: err,
           });
         } else if (user) {
@@ -179,13 +179,13 @@ module.exports = {
 
           res.status(200).json({
             success: true,
-            message: "user updated...",
+            message: 'user updated...',
             user,
           });
         } else {
           res.status(404).json({
             success: false,
-            message: "page not found",
+            message: 'page not found',
           });
         }
       },
@@ -210,7 +210,7 @@ module.exports = {
         if (err) {
           res.status(500).json({
             success: false,
-            message: "server error",
+            message: 'server error',
             error: err,
           });
         } else if (user) {
@@ -218,13 +218,13 @@ module.exports = {
 
           res.status(200).json({
             success: true,
-            message: "user updated...",
+            message: 'user updated...',
             user,
           });
         } else {
           res.status(404).json({
             success: false,
-            message: "page not found",
+            message: 'page not found',
           });
         }
       },
@@ -251,7 +251,7 @@ module.exports = {
         if (err) {
           res.status(500).json({
             success: false,
-            message: "server error",
+            message: 'server error',
             error: err,
           });
         } else if (user) {
@@ -259,13 +259,13 @@ module.exports = {
 
           res.status(200).json({
             success: true,
-            message: "user updated...",
+            message: 'user updated...',
             user,
           });
         } else {
           res.status(404).json({
             success: false,
-            message: "page not found",
+            message: 'page not found',
           });
         }
       },
@@ -279,23 +279,23 @@ module.exports = {
     User.findOneAndDelete({
       _id: id,
     })
-      .select("userName email")
+      .select('userName email')
       .exec((err, user) => {
         if (err) {
           res.status(500).json({
             success: false,
-            message: "server error",
+            message: 'server error',
             error: err,
           });
         } else if (user) {
           res.status(200).json({
             success: true,
-            message: "user deleted",
+            message: 'user deleted',
           });
         } else {
           res.status(404).json({
             success: false,
-            message: "page not found",
+            message: 'page not found',
           });
         }
       });

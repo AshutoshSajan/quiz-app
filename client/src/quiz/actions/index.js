@@ -1,9 +1,9 @@
 export function handleCreateQuiz(url, token, data, history) {
   return (dispatch) => {
     fetch(url, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
         Authorization: token,
       },
       body: JSON.stringify(data),
@@ -12,24 +12,24 @@ export function handleCreateQuiz(url, token, data, history) {
       .then((data) => {
         if (data.success) {
           dispatch({
-            type: "CREATE_QUIZ",
+            type: 'CREATE_QUIZ',
             payload: data.quiz,
           });
-          history.push("/");
+          history.push('/');
         } else if (!data.success) {
           // dispatch({
           //   type: 'ERROR',
           //   payload: data.massage
           // });
 
-          history.push("/quizzes/create-quiz", {
-            error: "Failed to create quiz!",
+          history.push('/quizzes/create-quiz', {
+            error: 'Failed to create quiz!',
           });
-          console.log("create quiz unsuccessfull...");
+          console.log('create quiz unsuccessfull...');
         }
       })
       .catch((err) => {
-        console.log(err, "question post catch err...");
+        console.log(err, 'question post catch err...');
       });
   };
 }
@@ -37,9 +37,9 @@ export function handleCreateQuiz(url, token, data, history) {
 export function handleQuizUpdate(url, token, data, id, history) {
   return (dispatch) => {
     fetch(url, {
-      method: "PUT",
+      method: 'PUT',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
         Authorization: token,
       },
       body: JSON.stringify(data),
@@ -48,24 +48,24 @@ export function handleQuizUpdate(url, token, data, id, history) {
       .then((data) => {
         if (data.success) {
           dispatch({
-            type: "UPDATE_QUIZ",
+            type: 'UPDATE_QUIZ',
             payload: data.quiz,
           });
 
-          history.push("/");
+          history.push('/');
         } else if (!data.success) {
-          console.log("quiz update unsuccessfull...");
+          console.log('quiz update unsuccessfull...');
           // dispatch({
           //   type: 'ERROR',
           //   payload: data.massage
           // });
-          history.push("/quizzes/" + id + "/edit", {
-            error: "Failed to update quiz!",
+          history.push('/quizzes/' + id + '/edit', {
+            error: 'Failed to update quiz!',
           });
         }
       })
       .catch((err) => {
-        console.log(err, "update quiz catch err...");
+        console.log(err, 'update quiz catch err...');
       });
   };
 }
@@ -73,9 +73,9 @@ export function handleQuizUpdate(url, token, data, id, history) {
 export function handleFetchQuizzes(url, token) {
   return (dispatch) => {
     fetch(url, {
-      method: "GET",
+      method: 'GET',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
         Authorization: token,
       },
     })
@@ -83,7 +83,7 @@ export function handleFetchQuizzes(url, token) {
       .then((data) => {
         if (data.success) {
           dispatch({
-            type: "GET_QUIZZES",
+            type: 'GET_QUIZZES',
             payload: data.quizzes.reverse(),
           });
         } else if (!data.success) {
@@ -91,11 +91,11 @@ export function handleFetchQuizzes(url, token) {
           //   type: 'ERROR',
           //   payload: data.massage
           // });
-          console.log(data.message, "error getting quizzes...");
+          console.log(data.message, 'error getting quizzes...');
         }
       })
       .catch((err) => {
-        console.log(err, "fetch quiz error...");
+        console.log(err, 'fetch quiz error...');
       });
   };
 }
@@ -103,9 +103,9 @@ export function handleFetchQuizzes(url, token) {
 export function handleUpdateScore(url, token, score) {
   return (dispatch) => {
     fetch(url, {
-      method: "PUT",
+      method: 'PUT',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
         Authorization: token,
       },
       body: JSON.stringify(score),
@@ -114,7 +114,7 @@ export function handleUpdateScore(url, token, score) {
       .then((data) => {
         if (data.success) {
           dispatch({
-            type: "UPDATE_USER",
+            type: 'UPDATE_USER',
             payload: data,
           });
         } else if (!data.success) {
@@ -122,11 +122,11 @@ export function handleUpdateScore(url, token, score) {
           //   type: 'ERROR',
           //   payload: data.massage
           // });
-          console.log(data, "update score failed...");
+          console.log(data, 'update score failed...');
         }
       })
       .catch((err) => {
-        console.log(err, "update score catch error...");
+        console.log(err, 'update score catch error...');
       });
   };
 }
@@ -134,9 +134,9 @@ export function handleUpdateScore(url, token, score) {
 export function deleteQuiz(url, token, id, history) {
   return (dispatch) => {
     fetch(url, {
-      method: "DELETE",
+      method: 'DELETE',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
         Authorization: token,
       },
     })
@@ -144,7 +144,7 @@ export function deleteQuiz(url, token, id, history) {
       .then((data) => {
         if (data.success) {
           dispatch({
-            type: "DELETE_QUIZ",
+            type: 'DELETE_QUIZ',
             payload: id,
           });
           // history.push('/');
@@ -154,11 +154,11 @@ export function deleteQuiz(url, token, id, history) {
           //   type: 'ERROR',
           //   payload: data.massage
           // });
-          console.log(data.message, "delete quiz unsuccessfull...");
+          console.log(data.message, 'delete quiz unsuccessfull...');
         }
       })
       .catch((err) => {
-        console.log(err, "delete quiz catch err...");
+        console.log(err, 'delete quiz catch err...');
       });
   };
 }

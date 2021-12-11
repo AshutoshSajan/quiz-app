@@ -1,7 +1,7 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { FaRegEdit } from "react-icons/fa";
-import { TiDelete } from "react-icons/ti";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { FaRegEdit } from 'react-icons/fa';
+import { TiDelete } from 'react-icons/ti';
 
 export default function QuizCard(props) {
   const {
@@ -25,9 +25,9 @@ export default function QuizCard(props) {
                 <div
                   className=""
                   style={{
-                    display: "flex",
-                    justifyContent: "flex-end",
-                    alignItems: "center",
+                    display: 'flex',
+                    justifyContent: 'flex-end',
+                    alignItems: 'center',
                   }}
                 >
                   <Link to={`/quizzes/${quiz._id}/edit`}>
@@ -40,7 +40,7 @@ export default function QuizCard(props) {
                     </span>
                   </Link>
 
-                  <span style={{ marginLeft: "20px" }}>
+                  <span style={{ marginLeft: '20px' }}>
                     <TiDelete
                       color="red"
                       fontSize="30px"
@@ -50,7 +50,7 @@ export default function QuizCard(props) {
                   </span>
                 </div>
               ) : (
-                ""
+                ''
               )}
 
               <div className="notification is-link">
@@ -59,63 +59,63 @@ export default function QuizCard(props) {
             </div>
             <div
               style={{
-                padding: "20px 0",
+                padding: '20px 0',
               }}
               id={quiz._id}
             >
               <div
-                id={"option1"}
-                style={isAnswered ? { pointerEvents: "none" } : {}}
+                id={'option1'}
+                style={isAnswered ? { pointerEvents: 'none' } : {}}
                 className={`btn notification is-primary ${
-                  isAnswered && "option1" === quiz.answer
-                    ? "is-success"
-                    : isAnswered && "option1" !== quiz.answer
-                    ? "is-danger"
-                    : ""
+                  isAnswered && 'option1' === quiz.answer
+                    ? 'is-success'
+                    : isAnswered && 'option1' !== quiz.answer
+                    ? 'is-danger'
+                    : ''
                 }`}
-                onClick={() => handleClick("option1", quiz)}
+                onClick={() => handleClick('option1', quiz)}
               >
                 <h4 className="title is-5">{quiz.option1}</h4>
               </div>
               <div
-                id={"option2"}
+                id={'option2'}
                 className={`btn notification is-primary ${
-                  isAnswered && "option2" === quiz.answer
-                    ? "is-success"
-                    : isAnswered && "option2" !== quiz.answer
-                    ? "is-danger"
-                    : ""
+                  isAnswered && 'option2' === quiz.answer
+                    ? 'is-success'
+                    : isAnswered && 'option2' !== quiz.answer
+                    ? 'is-danger'
+                    : ''
                 }`}
-                style={isAnswered ? { pointerEvents: "none" } : {}}
-                onClick={() => handleClick("option2", quiz)}
+                style={isAnswered ? { pointerEvents: 'none' } : {}}
+                onClick={() => handleClick('option2', quiz)}
               >
                 <h4 className="title is-5">{quiz.option2}</h4>
               </div>
               <div
-                id={"option3"}
+                id={'option3'}
                 className={`btn notification is-primary ${
-                  isAnswered && "option3" === quiz.answer
-                    ? "is-success"
-                    : isAnswered && "option3" !== quiz.answer
-                    ? "is-danger"
-                    : ""
+                  isAnswered && 'option3' === quiz.answer
+                    ? 'is-success'
+                    : isAnswered && 'option3' !== quiz.answer
+                    ? 'is-danger'
+                    : ''
                 }`}
-                style={isAnswered ? { pointerEvents: "none" } : {}}
-                onClick={() => handleClick("option3", quiz)}
+                style={isAnswered ? { pointerEvents: 'none' } : {}}
+                onClick={() => handleClick('option3', quiz)}
               >
                 <h4 className="title is-5">{quiz.option3}</h4>
               </div>
               <div
-                id={"option4"}
+                id={'option4'}
                 className={`btn notification is-primary ${
-                  isAnswered && "option4" === quiz.answer
-                    ? "is-success"
-                    : isAnswered && "option4" !== quiz.answer
-                    ? "is-danger"
-                    : ""
+                  isAnswered && 'option4' === quiz.answer
+                    ? 'is-success'
+                    : isAnswered && 'option4' !== quiz.answer
+                    ? 'is-danger'
+                    : ''
                 }`}
-                style={isAnswered ? { pointerEvents: "none" } : {}}
-                onClick={() => handleClick("option4", quiz)}
+                style={isAnswered ? { pointerEvents: 'none' } : {}}
+                onClick={() => handleClick('option4', quiz)}
               >
                 <h4 className="title is-5">{quiz.option4}</h4>
               </div>
@@ -126,9 +126,9 @@ export default function QuizCard(props) {
             <div className="notification is-danger is-light">
               <div
                 style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
                 }}
               >
                 <button className="button is-text">
@@ -143,7 +143,7 @@ export default function QuizCard(props) {
                   >
                     Submit score
                   </button>
-                  <span style={{ margin: "0 20px" }}></span>
+                  <span style={{ margin: '0 20px' }}></span>
                   <button className="button is-light" onClick={resetCounter}>
                     Play again
                   </button>

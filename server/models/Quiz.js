@@ -1,15 +1,15 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const quizSchema = new Schema(
   {
     question: {
       type: String,
-      default: "",
+      default: '',
     },
     category: {
       type: String,
-      default: "",
+      default: '',
     },
     option1: {
       type: String,
@@ -37,5 +37,5 @@ const quizSchema = new Schema(
   },
 );
 
-const Quiz = mongoose.model("Quiz", quizSchema);
+const Quiz = mongoose.model('Quiz', quizSchema);
 module.exports = Quiz;

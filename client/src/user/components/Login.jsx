@@ -1,14 +1,14 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { handleUserLogin } from "../actions";
-import { BASE_URL } from "../../static";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { handleUserLogin } from '../actions';
+import { BASE_URL } from '../../static';
 
 class Login extends Component {
   state = {
     user: {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
     },
   };
 
@@ -17,7 +17,7 @@ class Login extends Component {
     const { user } = this.state;
 
     this.props.dispatch(
-      handleUserLogin(BASE_URL + "/users/login", user, this.props.history),
+      handleUserLogin(BASE_URL + '/users/login', user, this.props.history),
     );
   };
 
@@ -44,12 +44,12 @@ class Login extends Component {
                   <label
                     htmlFor=""
                     className="label"
-                    style={{ textAlign: "center" }}
+                    style={{ textAlign: 'center' }}
                   >
                     {this.state.errMsg}
                   </label>
                 ) : (
-                  ""
+                  ''
                 )}
                 <form action="" className="box">
                   <div className="field">
@@ -95,7 +95,7 @@ class Login extends Component {
                       Don't have an account?
                     </label>
                     <Link to="/users/register">
-                      <span style={{ margin: "0 10px" }}>SignUp</span>
+                      <span style={{ margin: '0 10px' }}>SignUp</span>
                     </Link>
                   </div>
                   <div className="field">

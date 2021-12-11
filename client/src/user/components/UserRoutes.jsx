@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import { Switch, Route } from "react-router-dom";
-import PlayQuiz from "../../quiz/components/PlayQuiz.jsx";
-import ListQuiz from "../../quiz/containers/ListQuiz.jsx";
-import ErrorPage from "../../app/componets/ErrorPage.jsx";
-import Score from "../../score/components/Score.jsx";
+import React, { Component } from 'react';
+import { Switch, Route } from 'react-router-dom';
+import PlayQuiz from '../../quiz/components/PlayQuiz.jsx';
+import ListQuiz from '../../quiz/containers/ListQuiz.jsx';
+import ErrorPage from '../../app/componets/ErrorPage.jsx';
+import Score from '../../score/components/Score.jsx';
 
 export default class UserRoutes extends Component {
   render() {

@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Header({ user, handleLogout }) {
   return (
@@ -7,17 +7,17 @@ export default function Header({ user, handleLogout }) {
       className="navbar is-dark"
       role="navigation"
       aria-label="main navigation"
-      style={{ position: "fixed", width: "100%", top: "0" }}
+      style={{ position: 'fixed', width: '100%', top: '0' }}
     >
       <div className="navbar-brand">
         <h1
           className="navbar-item"
           style={{
-            fontSize: "30px",
-            fontWeight: "bold",
+            fontSize: '30px',
+            fontWeight: 'bold',
           }}
         >
-          <Link to="/" style={{ color: "#fff" }}>
+          <Link to="/" style={{ color: '#fff' }}>
             QUIZ APP
           </Link>
         </h1>
@@ -50,7 +50,7 @@ export default function Header({ user, handleLogout }) {
           </div>
         </div>
       ) : (
-        ""
+        ''
       )}
 
       <div className="navbar-end">
@@ -70,14 +70,14 @@ export default function Header({ user, handleLogout }) {
               <>
                 <button className="button is-light">
                   <Link to="/users/score">
-                    <strong style={{ fontWeight: "bold", fontSize: "24px" }}>
+                    <strong style={{ fontWeight: 'bold', fontSize: '24px' }}>
                       Show score
                     </strong>
                   </Link>
                 </button>
 
                 <button className="button is-light">
-                  <strong style={{ fontWeight: "bold", fontSize: "24px" }}>
+                  <strong style={{ fontWeight: 'bold', fontSize: '24px' }}>
                     Score : {user && user.user ? user.currentScore : 0}
                   </strong>
                 </button>
@@ -92,7 +92,7 @@ export default function Header({ user, handleLogout }) {
 
                 <button className="button is-primary is-light">
                   <strong>
-                    {user?.user?.name ? user?.user?.name : "User"}
+                    {user?.user?.name ? user?.user?.name : 'User'}
                   </strong>
                 </button>
 
