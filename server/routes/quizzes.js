@@ -1,40 +1,31 @@
 const express = require('express');
 const router = express.Router();
 
-// const { getAllQuizzes, getQuiz } = require('../controllers/quizController');
-const quizController = require('../controllers/quizController');
+const {
+  getAllQuizzes,
+  createQuiz,
+  createQuizzes,
+  getQuiz,
+  updateQuiz,
+  deleteQuiz,
+} = require('../controllers/quizController');
 const jwtAuth = require('../utils/jwtAuth');
 
-router.get('/', jwtAuth.verifyToken, quizController.getAllQuizzes);
+router.get('/', jwtAuth.verifyToken, getAllQuizzes);
 
-router.post(
-  '/',
-  jwtAuth.verifyToken,
-  jwtAuth.isAdmin,
-  quizController.createQuiz,
-);
+router.post('/', jwtAuth.verifyToken, jwtAuth.isAdmin, createQuiz);
 
 router.post(
   '/create-many',
   jwtAuth.verifyToken,
   jwtAuth.isAdmin,
-  quizController.createQuizzes,
+  createQuizzes,
 );
 
-router.get('/:id', jwtAuth.verifyToken, quizController.getQuiz);
+router.get('/:id', jwtAuth.verifyToken, getQuiz);
 
-router.put(
-  '/:id/update',
-  jwtAuth.verifyToken,
-  jwtAuth.isAdmin,
-  quizController.updateQuiz,
-);
+router.put('/:id/update', jwtAuth.verifyToken, jwtAuth.isAdmin, updateQuiz);
 
-router.delete(
-  '/:id/delete',
-  jwtAuth.verifyToken,
-  jwtAuth.isAdmin,
-  quizController.deleteQuiz,
-);
+router.delete('/:id/delete', jwtAuth.verifyToken, jwtAuth.isAdmin, deleteQuiz);
 
 module.exports = router;

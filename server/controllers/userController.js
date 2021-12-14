@@ -118,6 +118,7 @@ module.exports = {
             error: err,
           });
         }
+
         res.status(200).json({
           success: true,
           message: 'user found',
@@ -232,7 +233,7 @@ module.exports = {
   },
 
   deleteScore: (req, res) => {
-    const userId = req.user.userId;
+    const { userId } = req.user;
     const scoreId = req.params.id;
 
     User.findByIdAndUpdate(
