@@ -12,16 +12,16 @@ const {
   deleteUser,
 } = require('../controllers/userController');
 
-const jwtAuth = require('../utils/jwtAuth');
+const { verifyToken, isAdmin } = require('../utils/jwtAuth');
 
 // get all users
-router.get('/', jwtAuth.verifyToken, jwtAuth.isAdmin, getAllUsers);
+router.get('/', verifyToken, isAdmin, getAllUsers);
 
 // token login
-router.get('/me', jwtAuth.verifyToken, getUser);
+router.get('/me', verifyToken, getUser);
 
 // get single user
-router.get('/:id', jwtAuth.verifyToken, jwtAuth.isAdmin, getUser);
+router.get('/:id', verifyToken, isAdmin, getUser);
 
 // login user
 router.post('/login', loginUser);
@@ -30,15 +30,15 @@ router.post('/login', loginUser);
 router.post('/register', registerUser);
 
 // update user
-router.put('/update', jwtAuth.verifyToken, updateUser);
+router.put('/update', verifyToken, updateUser);
 
 // new route
-router.put('/score/update', jwtAuth.verifyToken, updateUserScore);
+router.put('/score/update', verifyToken, updateUserScore);
 
 // delete score
-router.delete('/score/:id/delete', jwtAuth.verifyToken, deleteScore);
+router.delete('/score/:id/delete', verifyToken, deleteScore);
 
 // delete user
-router.delete('/delete', jwtAuth.verifyToken, deleteUser);
+router.delete('/delete', verifyToken, deleteUser);
 
 module.exports = router;
