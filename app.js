@@ -4,9 +4,9 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const mongoose = require('mongoose');
 const cors = require('cors');
 const indexRouter = require('./server/routes');
+const { connectDB } = require('./server/config/db-config');
 
 const app = express();
 
@@ -14,23 +14,6 @@ const mongoURI =
   process.env.NODE_ENV === 'development'
     ? process.env.LOCAL_MONGO_URI
     : process.env.MONGO_URI;
-
-async function connectDB(DB_URI) {
-  try {
-    await mongoose.connect(DB_URI, {
-      useNewUrlParser: true,
-      useCreateIndex: true,
-      useFindAndModify: false,
-      useUnifiedTopology: true,
-    });
-
-    console.log('MongoDB Connected...');
-  } catch (err) {
-    console.error(err.message);
-    // Exit process with failure
-    process.exit(1);
-  }
-}
 
 connectDB(mongoURI);
 
