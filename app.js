@@ -15,9 +15,9 @@ const mongoURI =
     ? process.env.LOCAL_MONGO_URI
     : process.env.MONGO_URI;
 
-async function connectDB() {
+async function connectDB(DB_URI) {
   try {
-    await mongoose.connect(mongoURI, {
+    await mongoose.connect(DB_URI, {
       useNewUrlParser: true,
       useCreateIndex: true,
       useFindAndModify: false,
@@ -32,7 +32,7 @@ async function connectDB() {
   }
 }
 
-connectDB();
+connectDB(mongoURI);
 
 app.use(cors());
 
@@ -50,6 +50,7 @@ app.use(express.urlencoded({ extended: false }));
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/dist'));
 }
+
 if (process.env.NODE_ENV === 'development') {
   const webpack = require('webpack');
   const webpackConfig = require('./webpack.config');
