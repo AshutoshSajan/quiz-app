@@ -6,6 +6,7 @@ import EditQuiz from '../../quiz/components/EditQuiz.jsx';
 import PlayQuiz from '../../quiz/components/PlayQuiz.jsx';
 import ErrorPage from '../../app/componets/ErrorPage.jsx';
 import Score from '../../score/components/Score.jsx';
+import ShowPosts from '../../app/componets/ShowPosts.jsx';
 
 export default class AdminRoutes extends Component {
   render() {
@@ -17,6 +18,7 @@ export default class AdminRoutes extends Component {
           <Route path="/quizzes/create-quiz" component={CreateQuiz} />
           <Route path="/quizzes/:id/edit" component={EditQuiz} />
           <Route path="/users/score" component={Score} />
+          <Route path="/posts" component={ShowPosts} />
           <Route path="/*" component={ErrorPage} />
         </Switch>
       </div>
