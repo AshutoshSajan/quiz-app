@@ -7,3 +7,4 @@ dist
 # Mac
 .DS_Store
 .vscode
+*.0x
