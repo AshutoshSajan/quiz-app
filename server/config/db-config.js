@@ -34,10 +34,11 @@ const connectDB = async (DB_URI) => {
       useUnifiedTopology: true,
     });
 
-    migrateDB();
-    console.log('MongoDB Connected...');
+    // migrateDB();
+    console.log('\nMongoDB Connected...\n');
   } catch (err) {
-    console.error(err.message);
+    console.log('mongodb connection error', err.message);
+    console.error(err);
     // Exit process with failure
     process.exit(1);
   }
