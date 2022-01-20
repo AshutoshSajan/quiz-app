@@ -1,7 +1,7 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
-const bcrypt = require("bcrypt");
+const { Schema } = mongoose;
 const saltRounds = 10;
 
 const userSchema = new Schema(
@@ -14,8 +14,8 @@ const userSchema = new Schema(
     },
     email: {
       type: String,
-      required: [true, "Email address should be unique"],
-      unique: [true, "Email address should be unique"],
+      required: [true, 'Email address should be unique'],
+      unique: [true, 'Email address should be unique'],
     },
     password: {
       type: String,
@@ -39,7 +39,7 @@ const userSchema = new Schema(
         },
         category: {
           type: String,
-          default: "all",
+          default: 'all',
         },
         date: {
           type: Date,
@@ -54,19 +54,19 @@ const userSchema = new Schema(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 // =======================================================================
 // password hashing & creating admin user
 // =======================================================================
-userSchema.pre("save", function (next) {
-  if (this.password && this.isModified("password")) {
-    //generating salt
+userSchema.pre('save', function (next) {
+  if (this.password && this.isModified('password')) {
+    // generating salt
     bcrypt.genSalt(saltRounds, (err, salt) => {
       // hashing the password
-      bcrypt.hash(this.password, salt, (err, hash) => {
-        if (err) {
+      bcrypt.hash(this.password, salt, (error, hash) => {
+        if (error) {
           throw err;
         }
 
@@ -85,5 +85,5 @@ userSchema.pre("save", function (next) {
   }
 });
 
-const User = mongoose.model("Users", userSchema);
+const User = mongoose.model('Users', userSchema);
 module.exports = User;

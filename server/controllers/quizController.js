@@ -1,4 +1,4 @@
-const Quiz = require("../models/Quiz");
+const Quiz = require('../models/Quiz');
 
 module.exports = {
   createQuiz: (req, res) => {
@@ -7,7 +7,7 @@ module.exports = {
         res.status(500).json({
           success: false,
           error: err,
-          message: "server error",
+          message: 'server error',
         });
       } else if (quiz) {
         res.status(200).json({
@@ -17,14 +17,14 @@ module.exports = {
       } else {
         res.status(404).json({
           success: false,
-          message: "page not found",
+          message: 'page not found',
         });
       }
     });
   },
 
   getQuiz: (req, res) => {
-    const id = req.params.id;
+    const { id } = req.params;
 
     Quiz.findOne(
       {
@@ -35,7 +35,7 @@ module.exports = {
           res.status(500).json({
             success: false,
             error: err,
-            message: "server error",
+            message: 'server error',
           });
         } else if (quiz) {
           res.status(200).json({
@@ -45,10 +45,10 @@ module.exports = {
         } else {
           res.status(404).json({
             success: false,
-            message: "page not found",
+            message: 'page not found',
           });
         }
-      }
+      },
     );
   },
 
@@ -58,7 +58,7 @@ module.exports = {
         res.status(500).json({
           success: false,
           error: err,
-          message: "server error",
+          message: 'server error',
         });
       } else if (quizzes) {
         res.status(200).json({
@@ -68,14 +68,14 @@ module.exports = {
       } else {
         res.status(404).json({
           success: false,
-          message: "page not found",
+          message: 'page not found',
         });
       }
     });
   },
 
   updateQuiz: (req, res) => {
-    const id = req.params.id;
+    const { id } = req.params;
 
     Quiz.findOneAndUpdate(
       {
@@ -91,21 +91,21 @@ module.exports = {
           res.status(500).json({
             success: false,
             error: err,
-            message: "server error",
+            message: 'server error',
           });
         } else if (quiz) {
           res.status(200).json({
             success: true,
             quiz,
-            message: "update successful",
+            message: 'update successful',
           });
         } else {
           res.status(404).json({
             success: false,
-            message: "page not found",
+            message: 'page not found',
           });
         }
-      }
+      },
     );
   },
 
@@ -115,25 +115,25 @@ module.exports = {
         res.status(500).json({
           success: false,
           error: err,
-          message: "server error",
+          message: 'server error',
         });
       } else if (quizzes) {
         res.status(200).json({
           success: true,
           quizzes,
-          message: "multiple quiz created...",
+          message: 'multiple quiz created...',
         });
       } else {
         res.status(404).json({
           success: false,
-          message: "page not found",
+          message: 'page not found',
         });
       }
     });
   },
 
   deleteQuiz: (req, res) => {
-    const id = req.params.id;
+    const { id } = req.params;
 
     Quiz.findOneAndDelete(
       {
@@ -144,20 +144,20 @@ module.exports = {
           res.status(500).json({
             success: false,
             error: err,
-            message: "server error",
+            message: 'server error',
           });
         } else if (quiz) {
           res.status(200).json({
             success: true,
-            message: "quiz deleted",
+            message: 'quiz deleted',
           });
         } else {
           res.status(404).json({
             success: false,
-            message: "page not found",
+            message: 'page not found',
           });
         }
-      }
+      },
     );
   },
 };

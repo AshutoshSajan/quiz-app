@@ -1,13 +1,13 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import handleDeleteScore from "../actions";
-import { BASE_URL } from "../../static";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import handleDeleteScore from '../actions';
+import { BASE_URL } from '../../static';
 
 class Score extends Component {
   deleteScore = (id) => {
     const { jwt } = localStorage;
     this.props.dispatch(
-      handleDeleteScore(BASE_URL + "/users/score/" + id + "/delete", jwt)
+      handleDeleteScore(BASE_URL + '/users/score/' + id + '/delete', jwt),
     );
   };
 
@@ -15,11 +15,11 @@ class Score extends Component {
     const { user } = this.props;
     const thead =
       user && user.scores.length
-        ? Object.keys(user.scores[0]).filter((v) => v !== "_id")
+        ? Object.keys(user.scores[0]).filter((v) => v !== '_id')
         : [];
 
     return (
-      <div style={{ marginTop: "100px" }}>
+      <div style={{ marginTop: '100px' }}>
         <div className="container">
           <div className="table-container">
             <table className="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
@@ -54,13 +54,13 @@ class Score extends Component {
                             : null}
                         </td>
                         {user.isAdmin ? (
-                          <td style={{ textAlign: "center" }}>
+                          <td style={{ textAlign: 'center' }}>
                             <input
                               id={score._id}
                               className="button is-small"
                               style={{
-                                background: "transparent",
-                                border: "none",
+                                background: 'transparent',
+                                border: 'none',
                               }}
                               type="button"
                               onClick={() => this.deleteScore(score._id)}

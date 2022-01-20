@@ -1,33 +1,33 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { handleQuizUpdate } from "../actions";
-import { BASE_URL } from "../../static";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { handleQuizUpdate } from '../actions';
+import { BASE_URL } from '../../static';
 
 class EditQuiz extends Component {
   state = {
-    question: "",
-    option1: "",
-    option2: "",
-    option3: "",
-    option4: "",
-    category: "",
-    answer: "",
+    question: '',
+    option1: '',
+    option2: '',
+    option3: '',
+    option4: '',
+    category: '',
+    answer: '',
   };
 
   componentDidMount = () => {
-    const questionId = window.location.pathname.split("/")[2];
+    const questionId = window.location.pathname.split('/')[2];
     const { jwt } = localStorage;
 
     if (jwt && questionId) {
-      this.getQuiz(BASE_URL + "/quizzes/" + questionId, jwt);
+      this.getQuiz(BASE_URL + '/quizzes/' + questionId, jwt);
     }
   };
 
   getQuiz = (url, token) => {
     fetch(url, {
-      method: "GET",
+      method: 'GET',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
         Authorization: token,
       },
     })
@@ -37,11 +37,11 @@ class EditQuiz extends Component {
           this.setState({ ...data.quiz });
         }
         if (!data.success) {
-          console.log("get quiz unsuccessfull...");
+          console.log('get quiz unsuccessfull...');
         }
       })
       .catch((err) => {
-        console.log(err, "get quiz catch err...");
+        console.log(err, 'get quiz catch err...');
       });
   };
 
@@ -53,7 +53,7 @@ class EditQuiz extends Component {
   handleQuestionUpdate = () => {
     const { question, option1, option2, option3, option4, answer, category } =
       this.state;
-    const questionId = window.location.pathname.split("/")[2];
+    const questionId = window.location.pathname.split('/')[2];
 
     const { jwt } = localStorage;
     if (jwt && question && option1 && option2 && option3 && option4 && answer) {
@@ -63,9 +63,9 @@ class EditQuiz extends Component {
         answer: answer.toLowerCase(),
       };
 
-      const url = BASE_URL + "/quizzes/" + questionId + "/update";
+      const url = BASE_URL + '/quizzes/' + questionId + '/update';
       this.props.dispatch(
-        handleQuizUpdate(url, jwt, quiz, questionId, this.props.history)
+        handleQuizUpdate(url, jwt, quiz, questionId, this.props.history),
       );
     }
   };
@@ -75,7 +75,7 @@ class EditQuiz extends Component {
       this.state;
 
     return (
-      <div style={{ margin: "100px 0" }}>
+      <div style={{ margin: '100px 0' }}>
         <div className="container">
           <div className="notification">
             <div className="field">

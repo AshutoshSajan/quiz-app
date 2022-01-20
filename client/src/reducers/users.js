@@ -6,7 +6,7 @@ const initialState = {
 
 export default function usersReducer(state = initialState, action) {
   switch (action.type) {
-    case "LOGIN":
+    case 'LOGIN':
       return {
         ...state,
         isLoading: false,
@@ -14,7 +14,7 @@ export default function usersReducer(state = initialState, action) {
         user: action.payload.user,
       };
 
-    case "REGISTER":
+    case 'REGISTER':
       return {
         ...state,
         isLoading: false,
@@ -22,14 +22,14 @@ export default function usersReducer(state = initialState, action) {
         user: action.payload.user,
       };
 
-    case "UPDATE_USER":
+    case 'UPDATE_USER':
       return {
         ...state,
         isLoading: false,
         user: action.payload.user,
       };
 
-    case "LOGOUT":
+    case 'LOGOUT':
       localStorage.clear();
       return {
         ...state,
@@ -38,7 +38,7 @@ export default function usersReducer(state = initialState, action) {
         token: null,
       };
 
-    case "UPDATE_CURRENT_SCORE":
+    case 'UPDATE_CURRENT_SCORE':
       return {
         ...state,
         isLoading: false,

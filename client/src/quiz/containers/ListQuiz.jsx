@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import QuizCard from "../components/QuizCard.jsx";
-import { handleFetchQuizzes, handleUpdateScore, deleteQuiz } from "../actions";
-import { BASE_URL } from "../../static";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import QuizCard from '../components/QuizCard.jsx';
+import { handleFetchQuizzes, handleUpdateScore, deleteQuiz } from '../actions';
+import { BASE_URL } from '../../static';
 
 class ListQuiz extends Component {
   state = {
-    seletedCategory: "all",
+    seletedCategory: 'all',
     filteredQuiz: [],
     counter: 0,
     score: 0,
@@ -17,7 +17,7 @@ class ListQuiz extends Component {
     const { jwt } = localStorage;
 
     if (jwt) {
-      this.props.dispatch(handleFetchQuizzes(BASE_URL + "/quizzes", jwt));
+      this.props.dispatch(handleFetchQuizzes(BASE_URL + '/quizzes', jwt));
     }
   };
 
@@ -31,24 +31,24 @@ class ListQuiz extends Component {
         },
         () => {
           this.props.dispatch({
-            type: "UPDATE_CURRENT_SCORE",
+            type: 'UPDATE_CURRENT_SCORE',
             payload: this.state.score,
           });
 
           let div = document.getElementById(quiz._id);
-          if (div) div.style.pointerEvents = "none";
+          if (div) div.style.pointerEvents = 'none';
 
           this.handleScroll();
           setTimeout(() => {
             let elm = document.getElementById(option);
-            if (elm) elm.classList.remove("is-danger");
+            if (elm) elm.classList.remove('is-danger');
           }, 300);
-        }
+        },
       );
     } else {
       if (quiz && quiz._id) {
         let div = document.getElementById(quiz._id);
-        if (div) div.style.pointerEvents = "none";
+        if (div) div.style.pointerEvents = 'none';
       }
       this.handleScroll();
       return null;
@@ -57,7 +57,7 @@ class ListQuiz extends Component {
 
   updateUserScore = (score, jwt) => {
     this.props.dispatch(
-      handleUpdateScore(BASE_URL + "/users/score/update", jwt, score)
+      handleUpdateScore(BASE_URL + '/users/score/update', jwt, score),
     );
   };
 
@@ -65,16 +65,16 @@ class ListQuiz extends Component {
     const { jwt } = localStorage;
     this.props.dispatch(
       deleteQuiz(
-        BASE_URL + "/quizzes/" + id + "/delete",
+        BASE_URL + '/quizzes/' + id + '/delete',
         jwt,
         id,
-        this.props.history
-      )
+        this.props.history,
+      ),
     );
   };
 
   quizCategoryFilter = (category, id) => {
-    if (!category || category === "all") {
+    if (!category || category === 'all') {
       this.setState({ filteredQuiz: [] });
     } else {
       this.setState(
@@ -82,14 +82,14 @@ class ListQuiz extends Component {
         () => {
           this.setState({
             filteredQuiz: this.props.quiz.quiz.filter(
-              (quiz) => quiz.category === category
+              (quiz) => quiz.category === category,
             ),
           });
           this.props.dispatch({
-            type: "UPDATE_CURRENT_SCORE",
+            type: 'UPDATE_CURRENT_SCORE',
             payload: this.state.score,
           });
-        }
+        },
       );
     }
   };
@@ -97,7 +97,7 @@ class ListQuiz extends Component {
   resetCounter = () => {
     this.setState({ counter: 0, score: 0 }, () => {
       this.props.dispatch({
-        type: "UPDATE_CURRENT_SCORE",
+        type: 'UPDATE_CURRENT_SCORE',
         payload: this.state.score,
       });
     });
@@ -106,17 +106,16 @@ class ListQuiz extends Component {
   handleSubmitScore = () => {
     const { jwt } = localStorage;
     const { score, seletedCategory } = this.state;
-
     if (score) {
       this.updateUserScore({ score, category: seletedCategory }, jwt);
       this.resetCounter();
-      window.scroll("scrollY", 0);
+      window.scroll('scrollY', 0);
     }
   };
 
   handleScroll = () => {
-    var height = document.querySelector(".notification").clientHeight;
-    window.scroll("scrollY", window.scrollY + height + 40);
+    var height = document.querySelector('.notification').clientHeight;
+    window.scroll('scrollY', window.scrollY + height + 40);
   };
 
   footer = () => {
@@ -126,9 +125,9 @@ class ListQuiz extends Component {
           <div className="notification is-light is-success">
             <div
               style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
               }}
             >
               <button className="button is-text">
@@ -158,9 +157,9 @@ class ListQuiz extends Component {
     return (
       <div
         className=""
-        style={{ display: "flex", justifyContent: "space-between" }}
+        style={{ display: 'flex', justifyContent: 'space-between' }}
       >
-        <aside style={{ padding: "30px" }}>
+        <aside style={{ padding: '30px' }}>
           <ul>
             {quiz && quiz.category
               ? quiz.category.map((val) => {
@@ -168,14 +167,14 @@ class ListQuiz extends Component {
                     <li
                       key={val}
                       className="title is-5"
-                      style={{ cursor: "pointer", textTransform: "capitalize" }}
+                      style={{ cursor: 'pointer', textTransform: 'capitalize' }}
                       onClick={() => this.quizCategoryFilter(val)}
                     >
                       {val}
                     </li>
                   );
                 })
-              : ""}
+              : ''}
           </ul>
         </aside>
         <div className="container">
@@ -184,7 +183,7 @@ class ListQuiz extends Component {
                 return (
                   <div className="container" key={index}>
                     <div className="container">
-                      <div style={{ margin: "40px 0" }}>
+                      <div style={{ margin: '40px 0' }}>
                         <QuizCard
                           quiz={quiz}
                           handleClick={this.handleClick}
@@ -203,7 +202,7 @@ class ListQuiz extends Component {
             ? quiz.quiz.map((question, index) => {
                 return (
                   <div className="container" key={index}>
-                    <div style={{ margin: "40px 0" }}>
+                    <div style={{ margin: '40px 0' }}>
                       <QuizCard
                         quiz={question}
                         handleClick={this.handleClick}
@@ -217,16 +216,15 @@ class ListQuiz extends Component {
                   </div>
                 );
               })
-            : "no quiz found..."}
+            : 'no quiz found...'}
           {this.footer()}
         </div>
       </div>
     );
   }
 }
-
-const mapStateToProps = (state) => {
+function mapStateToProps(state) {
   return state;
-};
+}
 
 export default connect(mapStateToProps)(ListQuiz);

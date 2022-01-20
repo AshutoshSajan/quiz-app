@@ -1,15 +1,15 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+const { Schema } = mongoose;
 
 const quizSchema = new Schema(
   {
     question: {
       type: String,
-      default: "",
+      default: '',
     },
     category: {
       type: String,
-      default: "",
+      default: '',
     },
     option1: {
       type: String,
@@ -34,8 +34,8 @@ const quizSchema = new Schema(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
-const Quiz = mongoose.model("Quiz", quizSchema);
+const Quiz = mongoose.model('Quiz', quizSchema);
 module.exports = Quiz;

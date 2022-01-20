@@ -1,9 +1,9 @@
 export default function handleDeleteScore(url, token) {
   return (dispatch) => {
     fetch(url, {
-      method: "DELETE",
+      method: 'DELETE',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
         Authorization: token,
       },
     })
@@ -11,20 +11,20 @@ export default function handleDeleteScore(url, token) {
       .then((data) => {
         if (data.success) {
           dispatch({
-            type: "UPDATE_USER",
+            type: 'UPDATE_USER',
             payload: data,
           });
-          console.log(data, "deleted score sucessfull...");
+          console.log(data, 'deleted score sucessfull...');
         } else if (!data.success) {
           dispatch({
-            type: "ERROR",
+            type: 'ERROR',
             payload: data.message,
           });
-          console.log(data, "deleted score failed...");
+          console.log(data, 'deleted score failed...');
         }
       })
       .catch((err) => {
-        console.log(err, "delete score catch error...");
+        console.log(err, 'delete score catch error...');
       });
   };
 }

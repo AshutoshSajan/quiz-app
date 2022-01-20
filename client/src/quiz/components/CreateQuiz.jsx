@@ -1,17 +1,17 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { handleCreateQuiz } from "../actions";
-import { BASE_URL } from "../../static";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { handleCreateQuiz } from '../actions';
+import { BASE_URL } from '../../static';
 
 class CreateQuiz extends Component {
   state = {
-    question: "",
-    option1: "",
-    option2: "",
-    option3: "",
-    option4: "",
-    answer: "",
-    category: "",
+    question: '',
+    option1: '',
+    option2: '',
+    option3: '',
+    option4: '',
+    answer: '',
+    category: '',
   };
 
   handleInputChange = (e) => {
@@ -36,7 +36,7 @@ class CreateQuiz extends Component {
     ) {
       const quiz = { ...this.state, answer: answer.toLowerCase() };
       this.props.dispatch(
-        handleCreateQuiz(BASE_URL + "/quizzes", jwt, quiz, this.props.history)
+        handleCreateQuiz(BASE_URL + '/quizzes', jwt, quiz, this.props.history),
       );
     }
   };
@@ -55,11 +55,11 @@ class CreateQuiz extends Component {
     } = this.state;
 
     return (
-      <div style={{ marginTop: "100px" }}>
+      <div style={{ marginTop: '100px' }}>
         <div className="container">
           <div className="notification">
-            <label className="label" style={{ textAlign: "center" }}>
-              {successMsg || errorMsg || ""}
+            <label className="label" style={{ textAlign: 'center' }}>
+              {successMsg || errorMsg || ''}
             </label>
             <div className="field">
               <label className="label">Question</label>
