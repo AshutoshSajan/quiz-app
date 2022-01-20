@@ -1,3 +1,4 @@
+rename this file to '.env' and remove this line
 MONGO_URI=your production mongo URI
 LOCAL_MONGO_URI=your local mongo URI
 JWT_SECRET=your JWT secret
