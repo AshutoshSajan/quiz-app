@@ -10,7 +10,8 @@
     "pretty": "prettier --write \"./**/*.{js,jsx,json}\"",
     "test": "NODE_ENV=test jest",
     "lint": "eslint .",
-    "lint-fix": "eslint --fix --ext .js, .json, ."
+    "lint-fix": "eslint --fix .",
+    "sync-test": "jest --runInBand"
   },
   "author": "Sajan",
   "license": "ISC",
