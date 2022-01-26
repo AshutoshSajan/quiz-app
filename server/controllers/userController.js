@@ -195,7 +195,7 @@ module.exports = {
 
   updateUserScore: (req, res) => {
     const id = req.user.userId;
-    let scores = req.body;
+    const scores = req.body;
 
     User.findByIdAndUpdate(
       id,
