@@ -3,9 +3,15 @@
 /**
  * Module dependencies.
  */
-
+require('dotenv').config();
 const debug = require('debug')('quizapp:server');
 const http = require('http');
+const { connectDB } = require('../server/config/db-config');
+
+console.log('NODE_ENV', process.env.NODE_ENV);
+
+connectDB();
+
 const app = require('../app');
 
 /**

@@ -1,4 +1,3 @@
-require('dotenv').config();
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
@@ -6,16 +5,8 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
 const indexRouter = require('./server/routes');
-const { connectDB } = require('./server/config/db-config');
 
 const app = express();
-
-const mongoURI =
-  process.env.NODE_ENV === 'development'
-    ? process.env.LOCAL_MONGO_URI
-    : process.env.MONGO_URI;
-
-connectDB(mongoURI);
 
 app.use(cors());
 
