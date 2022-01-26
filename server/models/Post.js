@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+
 const { Schema } = mongoose;
 
 const quizSchema = new Schema(
@@ -26,4 +27,4 @@ const quizSchema = new Schema(
   },
 );
 
-module.exports = mongoose.model('Post', quizSchema);
+module.exports = mongoose.model('post', quizSchema);
