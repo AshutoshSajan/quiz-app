@@ -4,7 +4,7 @@
   "description": "simple quiz app",
   "main": "app.js",
   "scripts": {
-    "start": "NODE_ENV=development nodemon ./bin/www",
+    "start": "NODE_ENV=production nodemon ./bin/www",
     "dev": "webpack --mode development && nodemon ./bin/www",
     "build": "GENERATE_SOURCEMAP=false webpack --mode production",
     "pretty": "prettier --write \"./**/*.{js,jsx,json}\"",
