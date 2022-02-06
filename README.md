@@ -5,12 +5,12 @@
 - Admin can add, view, update and delete the quiz
 - Users acn only play and see there score board
 
-## App setup
+## Setup and run the app
 
-- Rename the `env` file to `.env` and add the environment variables
-
-## Start the app
+Rename the `env` file to `.env` and add the environment variables
 
 ```sh
+$ npm install
+
 $ npm start
 ```
