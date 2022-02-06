@@ -5,9 +5,9 @@
   "main": "app.js",
   "scripts": {
     "start": "NODE_ENV=production nodemon ./bin/www",
-    "dev": "webpack --mode development && nodemon ./bin/www",
+    "dev": "NODE_ENV=development webpack --mode development && nodemon ./bin/www",
     "build": "GENERATE_SOURCEMAP=false webpack --mode production",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "NODE_ENV=test jest",
     "pretty": "prettier --write \"./**/*.{js,jsx,json}\""
   },
   "author": "Sajan",
@@ -39,10 +39,7 @@
     "react-redux": "^7.2.6",
     "react-router-dom": "^5.3.0",
     "redux": "^4.1.2",
-    "redux-thunk": "^2.4.1",
-    "webpack-dev-middleware": "^3.7.3",
-    "webpack-hot-middleware": "^2.25.1",
-    "webpack-node-externals": "^1.7.2"
+    "redux-thunk": "^2.4.1"
   },
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.16.4",
@@ -68,6 +65,9 @@
     "style-loader": "^1.3.0",
     "webpack": "^4.46.0",
     "webpack-bundle-analyzer": "^4.5.0",
-    "webpack-cli": "^3.3.12"
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-middleware": "^3.7.3",
+    "webpack-hot-middleware": "^2.25.1",
+    "webpack-node-externals": "^1.7.2"
   }
 }
