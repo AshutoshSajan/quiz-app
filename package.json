@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "simple quiz app",
   "main": "app.js",
+  "bin": {
+    "bin": "./bin/www"
+  },
   "scripts": {
     "start": "NODE_ENV=production nodemon ./bin/www",
     "dev": "NODE_ENV=development webpack --mode development && nodemon ./bin/www",
