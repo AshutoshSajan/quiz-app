@@ -3,6 +3,8 @@ const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 // const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
+const esbuild = require('esbuild');
+const { ESBuildMinifyPlugin } = require('esbuild-loader');
 
 const htmlPlugin = new HtmlWebPackPlugin({
   // template: "./client/public/index.html",
@@ -18,13 +20,26 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
+        loader: 'esbuild-loader',
+        options: {
+          loader: 'jsx', // Remove this if you're not using JSX
+          target: 'es2015', // Syntax to compile to (see options below for possible values)
+          implementation: esbuild,
         },
       },
       {
         test: /\.s?css$/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'esbuild-loader',
+            options: {
+              loader: 'css',
+              minify: true,
+            },
+          },
+        ],
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
@@ -65,5 +80,12 @@ module.exports = {
       'react/addons': true,
     },
   ],
-  optimization: {},
+  optimization: {
+    minimizer: [
+      new ESBuildMinifyPlugin({
+        target: 'es2015', // Syntax to compile to (see options below for possible values)
+        css: true, // Apply minification to CSS assets
+      }),
+    ],
+  },
 };
