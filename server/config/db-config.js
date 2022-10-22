@@ -1,7 +1,5 @@
 // DB migration script to make changes in all the collections
 const mongoose = require('mongoose');
-const { NODE_ENV, ME_CONFIG_MONGODB_URL } = process.env;
-const mongoURI = NODE_ENV === 'production' ? ME_CONFIG_MONGODB_URL : '';
 
 const migrateDB = () => {
   const { collections } = mongoose.connections[0];
@@ -11,7 +9,7 @@ const migrateDB = () => {
       {},
       {
         $rename: {
-          //   userName: 'name',
+          // userName: 'name',
           created_at: 'createdAt',
           updated_at: 'updatedAt',
         },
@@ -29,16 +27,17 @@ const migrateDB = () => {
 
 const connectDB = async (DB_URI) => {
   try {
-    await mongoose.connect(mongoURI || DB_URI, {
+    await mongoose.connect(DB_URI, {
       useNewUrlParser: true,
       useCreateIndex: true,
       useFindAndModify: false,
       useUnifiedTopology: true,
     });
 
-    console.log(`MongoDB Connected at ${mongoURI}...`);
+    // eslint-disable-next-line no-console
+    console.log('Connected to MongoDB');
   } catch (err) {
-    console.error(`mongodb connection error', ${err.message}`, err);
+    console.error(`mongodb connection error, ${err.message}`, err);
     // Exit process with failure
     process.exit(1);
   }

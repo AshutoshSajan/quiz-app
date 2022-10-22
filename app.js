@@ -1,3 +1,6 @@
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable node/no-unpublished-require */
+/* eslint-disable global-require */
 require('dotenv').config();
 const createError = require('http-errors');
 const express = require('express');
@@ -10,12 +13,7 @@ const { connectDB } = require('./server/config/db-config');
 
 const app = express();
 
-const mongoURI =
-  process.env.NODE_ENV === 'development'
-    ? process.env.LOCAL_MONGO_URI
-    : process.env.MONGO_URI;
-
-connectDB(mongoURI);
+connectDB(process.env.MONGO_URI);
 
 app.use(cors());
 
