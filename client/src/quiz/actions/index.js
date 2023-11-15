@@ -59,7 +59,7 @@ export function handleQuizUpdate(url, token, data, id, history) {
           //   type: 'ERROR',
           //   payload: data.massage
           // });
-          history.push('/quizzes/' + id + '/edit', {
+          history.push(`/quizzes/${id}/edit`, {
             error: 'Failed to update quiz!',
           });
         }
@@ -149,6 +149,7 @@ export function deleteQuiz(url, token, id, history) {
           });
           // history.push('/');
         }
+
         if (!data.success) {
           // dispatch({
           //   type: 'ERROR',

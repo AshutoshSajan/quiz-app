@@ -19,7 +19,7 @@ const migrateDB = () => {
         // upsert: true,
       },
       (err, user) => {
-        // console.log({ err, user });
+        console.info({ err, user });
       },
     );
   });

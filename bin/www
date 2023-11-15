@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-const debug = require('debug')('quizapp:server');
 const http = require('http');
+const debug = require('debug')('quizapp:server');
 const app = require('../app');
 
 /**
