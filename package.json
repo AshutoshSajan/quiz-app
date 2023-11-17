@@ -9,7 +9,8 @@
   "scripts": {
     "start": "node ./bin/www",
     "dev": "webpack --mode development && nodemon ./bin/www",
-    "build": "GENERATE_SOURCEMAP=false webpack --mode production",
+    "build": "webpack --mode production",
+    "prod": "node ./build/index.js",
     "test": "NODE_ENV=test jest",
     "lint": "eslint .",
     "lint-fix": "eslint --fix .",
