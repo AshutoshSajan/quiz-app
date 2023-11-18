@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { BASE_URL } from '../../static';
 
 const ShowPosts = () => {
   const [posts, setPosts] = useState([]);
   const [page, setPage] = useState(0);
 
   useEffect(() => {}, [
-    fetch(`${BASE_URL}/posts?skip=${page}&limit=10`)
+    fetch(`/api/v1/posts?skip=${page}&limit=10`)
       .then(res.json())
       .then(() => setPosts(res.data)),
   ]);

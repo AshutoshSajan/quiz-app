@@ -19,7 +19,6 @@
   },
   "author": "Sajan",
   "license": "ISC",
-  "proxy": "http://localhost:5000",
   "dependencies": {
     "@babel/core": "^7.16.0",
     "@babel/plugin-proposal-class-properties": "^7.16.0",

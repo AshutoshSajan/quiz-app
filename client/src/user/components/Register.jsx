@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { handleUserRegister } from '../actions';
-import { BASE_URL } from '../../static';
 
 class Register extends Component {
   state = {
@@ -33,11 +32,7 @@ class Register extends Component {
       const user = { name, email, password };
 
       this.props.dispatch(
-        handleUserRegister(
-          BASE_URL + '/users/register',
-          user,
-          this.props.history,
-        ),
+        handleUserRegister('/api/v1/users/register', user, this.props.history),
       );
     } else {
       this.setState(
