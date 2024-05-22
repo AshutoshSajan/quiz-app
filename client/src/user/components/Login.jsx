@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { handleUserLogin } from '../actions';
-import { BASE_URL } from '../../static';
 
 class Login extends Component {
   state = {
@@ -17,7 +16,7 @@ class Login extends Component {
     const { user } = this.state;
 
     this.props.dispatch(
-      handleUserLogin(BASE_URL + '/users/login', user, this.props.history),
+      handleUserLogin('/api/v1/users/login', user, this.props.history),
     );
   };
 

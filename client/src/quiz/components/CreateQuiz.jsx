@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { handleCreateQuiz } from '../actions';
-import { BASE_URL } from '../../static';
 
 class CreateQuiz extends Component {
   state = {
@@ -36,7 +35,7 @@ class CreateQuiz extends Component {
     ) {
       const quiz = { ...this.state, answer: answer.toLowerCase() };
       this.props.dispatch(
-        handleCreateQuiz(BASE_URL + '/quizzes', jwt, quiz, this.props.history),
+        handleCreateQuiz('/api/v1/quizzes', jwt, quiz, this.props.history),
       );
     }
   };

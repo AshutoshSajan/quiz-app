@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import handleDeleteScore from '../actions';
-import { BASE_URL } from '../../static';
 
 class Score extends Component {
   deleteScore = (id) => {
     const { jwt } = localStorage;
     this.props.dispatch(
-      handleDeleteScore(BASE_URL + '/users/score/' + id + '/delete', jwt),
+      handleDeleteScore(`/api/v1/users/score/${id}/delete`, jwt),
     );
   };
 

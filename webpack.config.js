@@ -1,54 +1,41 @@
-const HtmlWebPackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
-const nodeExternals = require('webpack-node-externals');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-// const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
-const esbuild = require('esbuild');
-const { ESBuildMinifyPlugin } = require('esbuild-loader');
-
-const htmlPlugin = new HtmlWebPackPlugin({
-  // template: "./client/public/index.html",
-  template: './server/views/index.ejs',
-  filename: './index.ejs',
-});
+// const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  mode: process.env.NODE_ENV,
+  mode: 'development',
+  devtool: 'inline-source-map',
   entry: ['./client/src/index.js'],
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        loader: 'esbuild-loader',
-        options: {
-          loader: 'jsx', // Remove this if you're not using JSX
-          target: 'es2015', // Syntax to compile to (see options below for possible values)
-          implementation: esbuild,
-        },
+        use: { loader: 'babel-loader' },
       },
       {
-        test: /\.s?css$/,
+        test: /\.(scss|css)$/,
         use: [
-          'style-loader',
-          'css-loader',
+          { loader: MiniCssExtractPlugin.loader },
           {
-            loader: 'esbuild-loader',
-            options: {
-              loader: 'css',
-              minify: true,
-            },
+            loader: 'css-loader',
           },
+          { loader: 'sass-loader' },
         ],
       },
       {
-        test: /\.(png|svg|jpg|gif)$/,
-        loader: 'file-loader',
-        options: {
-          name: '/static/[name].[ext]',
-        },
+        test: /\.(png|jpg|gif)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {},
+          },
+        ],
       },
     ],
+  },
+  resolve: {
+    extensions: ['.js', '.jsx'],
   },
   output: {
     filename: 'bundle.js',
@@ -56,36 +43,17 @@ module.exports = {
     publicPath: '/static/',
   },
   plugins: [
-    htmlPlugin,
-    // new BundleAnalyzerPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+        NODE_ENV: JSON.stringify('development'),
       },
     }),
     new MiniCssExtractPlugin({
       filename: 'bundle.css',
     }),
-    new webpack.optimize.AggressiveMergingPlugin(), // Merge chunks
+    // new HtmlWebpackPlugin({
+    //   favicon: "/public/media/bell.png"
+    // })
   ],
-  resolve: {
-    extensions: ['.webpack.js', '.web.js', '.tsx', '.ts', '.js', '.json'],
-  },
-  externals: [
-    nodeExternals(),
-    {
-      'react/lib/ReactContext': 'window',
-      'react/lib/ExecutionEnvironment': true,
-      'react/addons': true,
-    },
-  ],
-  optimization: {
-    minimizer: [
-      new ESBuildMinifyPlugin({
-        target: 'es2015', // Syntax to compile to (see options below for possible values)
-        css: true, // Apply minification to CSS assets
-      }),
-    ],
-  },
 };

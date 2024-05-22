@@ -6,7 +6,6 @@ import AdminRoutes from './admin/components/AdminRoutes.jsx';
 import UserRoutes from './user/components/UserRoutes.jsx';
 import PublicRoutes from './app/componets/PublicRoutes.jsx';
 import { handleAutoLogin } from './user/actions';
-import { BASE_URL } from './static';
 
 class App extends Component {
   state = {};
@@ -16,7 +15,7 @@ class App extends Component {
 
     if (jwt) {
       this.props.dispatch(
-        handleAutoLogin(BASE_URL + '/users/me', jwt, this.props.history),
+        handleAutoLogin('/api/v1/users/me', jwt, this.props.history),
       );
     } else if (!jwt) {
       this.props.history.push('/users/login');

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import QuizCard from './QuizCard.jsx';
 import { handleFetchQuizzes, handleUpdateScore, deleteQuiz } from '../actions';
-import { BASE_URL } from '../../static';
 class PlayQuiz extends Component {
   state = {
     quizzes: [],
@@ -14,7 +13,7 @@ class PlayQuiz extends Component {
   componentDidMount() {
     const { jwt } = localStorage;
     if (jwt) {
-      this.props.dispatch(handleFetchQuizzes(BASE_URL + '/quizzes', jwt));
+      this.props.dispatch(handleFetchQuizzes('/api/v1/quizzes', jwt));
     }
   }
 
@@ -91,12 +90,7 @@ class PlayQuiz extends Component {
 
     if (jwt) {
       this.props.dispatch(
-        deleteQuiz(
-          BASE_URL + '/quizzes/' + id + '/delete',
-          jwt,
-          id,
-          this.props.history,
-        ),
+        deleteQuiz(`/api/v1/quizzes/${id}/delete`, jwt, id, this.props.history),
       );
     }
   };
@@ -108,7 +102,7 @@ class PlayQuiz extends Component {
 
     if (jwt) {
       this.props.dispatch(
-        handleUpdateScore(BASE_URL + '/users/score/update', jwt, scoreData),
+        handleUpdateScore('/api/v1/users/score/update', jwt, scoreData),
       );
     }
     this.resetCounter();

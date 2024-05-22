@@ -31,6 +31,7 @@ export default function usersReducer(state = initialState, action) {
 
     case 'LOGOUT':
       localStorage.clear();
+
       return {
         ...state,
         isLoading: true,

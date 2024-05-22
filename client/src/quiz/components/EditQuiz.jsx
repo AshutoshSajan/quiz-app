@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { handleQuizUpdate } from '../actions';
-import { BASE_URL } from '../../static';
 
 class EditQuiz extends Component {
   state = {
@@ -19,7 +18,7 @@ class EditQuiz extends Component {
     const { jwt } = localStorage;
 
     if (jwt && questionId) {
-      this.getQuiz(BASE_URL + '/quizzes/' + questionId, jwt);
+      this.getQuiz(`/api/v1/quizzes/${questionId}`, jwt);
     }
   };
 
@@ -63,7 +62,8 @@ class EditQuiz extends Component {
         answer: answer.toLowerCase(),
       };
 
-      const url = BASE_URL + '/quizzes/' + questionId + '/update';
+      const url = `/api/v1/quizzes/${questionId}/update`;
+
       this.props.dispatch(
         handleQuizUpdate(url, jwt, quiz, questionId, this.props.history),
       );

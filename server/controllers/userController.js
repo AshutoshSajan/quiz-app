@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-underscore-dangle */
 const bcrypt = require('bcrypt');
 const User = require('../models/User');
 const jwtAuth = require('../utils/jwtAuth');
@@ -5,7 +7,7 @@ const jwtAuth = require('../utils/jwtAuth');
 module.exports = {
   // create/register user
   registerUser: (req, res) => {
-    console.log(req.body, 'inside register user...');
+    console.info({ body: req.body });
 
     User.findOne(
       {
@@ -76,12 +78,12 @@ module.exports = {
       } else if (user) {
         const plainPassword = req.body.password;
 
-        bcrypt.compare(plainPassword, user.password, (err, match) => {
-          if (err) {
+        bcrypt.compare(plainPassword, user.password, (error, match) => {
+          if (error) {
             res.status(400).json({
               success: false,
               message: 'bcrypt password compare error',
-              error: err,
+              error: error,
             });
           } else if (match) {
             const token = jwtAuth.createToken(user._id, process.env.JWT_SECRET);
@@ -195,7 +197,7 @@ module.exports = {
 
   updateUserScore: (req, res) => {
     const id = req.user.userId;
-    let scores = req.body;
+    const scores = req.body;
 
     User.findByIdAndUpdate(
       id,
