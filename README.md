@@ -11,6 +11,11 @@ Rename the `env` file to `.env` and add the environment variables
 
 ```sh
 $ npm install
+```
 
+```sh
 $ npm start
 ```
+ 
+ > git worktree 1 test
+ 
